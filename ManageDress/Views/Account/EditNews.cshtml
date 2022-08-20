@@ -1,0 +1,830 @@
+﻿@model Dress_BLL.Model.NewsArticlesModel
+@{
+    ViewBag.Title = "ManageUser";
+    Layout = "~/Views/Account/Admin.cshtml";
+    ViewData["Title"] = "Administration Console";
+    ViewBag.Home = "active";
+}
+
+<script>
+    $(document).ready(function () {
+        tinymce.init({
+            selector: 'textarea',
+            height: 400,
+            menubar: false,
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount'
+            ],
+            toolbar: 'undo redo | formatselect | ' +
+                'bold italic backcolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help',
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+        });
+        $("#image1").on('change', function () {
+            var data = new FormData();
+            var files = $("#image1").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Code", '@Model.Id');
+                data.append("Type", 'Banner1');
+            }
+            $.ajax({
+                url: "@Url.Action("UploadNews")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photo1").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+
+        $("#image2").on('change', function () {
+            var data = new FormData();
+            var files = $("#image2").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Code", '@Model.Id');
+                data.append("Type", 'Banner2');
+            }
+            $.ajax({
+                url: "@Url.Action("UploadNews")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photo2").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+
+        $("#image3").on('change', function () {
+            var data = new FormData();
+            var files = $("#image3").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Code", '@Model.Id');
+                data.append("Type", 'Banner3');
+            }
+            $.ajax({
+                url: "@Url.Action("UploadNews")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photo3").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+
+        $("#image1_mobile").on('change', function () {
+            var data = new FormData();
+            var files = $("#image1_mobile").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Code", '@Model.Id');
+                data.append("Type", 'Banner1_Mobile');
+            }
+            $.ajax({
+                url: "@Url.Action("UploadNews")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photo1_mobile").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+
+        $("#image2_mobile").on('change', function () {
+            var data = new FormData();
+            var files = $("#image2_mobile").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Code", '@Model.Id');
+                data.append("Type", 'Banner2_Mobile');
+            }
+            $.ajax({
+                url: "@Url.Action("UploadNews")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photo2_mobile").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+
+        $("#image3_mobile").on('change', function () {
+            var data = new FormData();
+            var files = $("#image3_mobile").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Code", '@Model.Id');
+                data.append("Type", 'Banner3_Mobile');
+            }
+            $.ajax({
+                url: "@Url.Action("UploadNews")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photo3_mobile").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+
+        $("#image4_1").on('change', function () {
+            var data = new FormData();
+            var files = $("#image4_1").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Code", '@Model.Id');
+                data.append("Type", 'Footer1');
+            }
+            $.ajax({
+                url: "@Url.Action("UploadNews")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photo4_1").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+
+        $("#image4_2").on('change', function () {
+            var data = new FormData();
+            var files = $("#image4_2").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Code", '@Model.Id');
+                data.append("Type", 'Footer2');
+            }
+            $.ajax({
+                url: "@Url.Action("UploadNews")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photo4_2").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+
+        $("#image4_3").on('change', function () {
+            var data = new FormData();
+            var files = $("#image4_3").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Code", '@Model.Id');
+                data.append("Type", 'Footer3');
+            }
+            $.ajax({
+                url: "@Url.Action("UploadNews")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photo4_3").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+
+        $("#image4_4").on('change', function () {
+            var data = new FormData();
+            var files = $("#image4_4").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Code", '@Model.Id');
+                data.append("Type", 'Footer4');
+            }
+            $.ajax({
+                url: "@Url.Action("UploadNews")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photo4_4").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+
+        $("#imagerefer_1").on('change', function () {
+            var data = new FormData();
+            var files = $("#imagerefer_1").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Service_Id", '@Model.Id');
+                data.append("Index", 1);
+                data.append("Type", "Service");
+            }
+            $.ajax({
+                url: "@Url.Action("UploadNewsReference")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photorefer_1").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+
+        $("#imagerefer_2").on('change', function () {
+            var data = new FormData();
+            var files = $("#imagerefer_2").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Service_Id", '@Model.Id');
+                data.append("Index", 2);
+                data.append("Type", "Service");
+            }
+            $.ajax({
+                url: "@Url.Action("UploadNewsReference")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photorefer_2").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+
+        $("#imagerefer_3").on('change', function () {
+            var data = new FormData();
+            var files = $("#imagerefer_3").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Service_Id", '@Model.Id');
+                data.append("Index", 3);
+                data.append("Type", "Service");
+            }
+            $.ajax({
+                url: "@Url.Action("UploadNewsReference")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photorefer_3").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+
+        $("#imageinformrefer_1").on('change', function () {
+            var data = new FormData();
+            var files = $("#imageinformrefer_1").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Service_Id", '@Model.Id');
+                data.append("Index", 1);
+                data.append("Type", "Information");
+            }
+            $.ajax({
+                url: "@Url.Action("UploadNewsReference")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photoinformrefer_1").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+
+        $("#imageinformrefer_2").on('change', function () {
+            var data = new FormData();
+            var files = $("#imageinformrefer_2").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Service_Id", '@Model.Id');
+                data.append("Index", 2);
+                data.append("Type", "Information");
+            }
+            $.ajax({
+                url: "@Url.Action("UploadNewsReference")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photoinformrefer_2").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+
+        $("#imageinformrefer_3").on('change', function () {
+            var data = new FormData();
+            var files = $("#imageinformrefer_3").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Service_Id", '@Model.Id');
+                data.append("Index", 3);
+                data.append("Type", "Information");
+            }
+            $.ajax({
+                url: "@Url.Action("UploadNewsReference")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photoinformrefer_3").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+
+        $("#btnDelete").click(function () {
+            var model = {
+                'Id': @Model.Id
+            };
+
+            $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("DeleteNews")",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(model),
+                    success: function (data) {
+                        if (data.Response == "Success") {
+                            alert("Xóa bản ghi thành công.");
+                            location.href = '/Account/ManageNews';
+                        }
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
+                });
+        });
+
+        $("#btnSave").click(function () {
+            var model = {
+                'Code': $("#txtCode").val(),
+                'Title': $("#txtName").val(),
+                'Content1': tinymce.get("Content1").getContent(),
+                'Content2': tinymce.get("Content2").getContent(),
+                'Content3': tinymce.get("Content3").getContent(),
+                'Content4': tinymce.get("Content4").getContent(),
+                'ServiceReferences':
+                    [
+                        {
+                            Id: $("#serviceHidden_1").val(),
+                            Title: $("#txtServiceReferenceTitle_1").val(),
+                            Url: $("#txtServiceReferenceUrl_1").val(),
+                            Index: 1
+                        },
+                        {
+                            Id: $("#serviceHidden_2").val(),
+                            Title: $("#txtServiceReferenceTitle_2").val(),
+                            Url: $("#txtServiceReferenceUrl_2").val(),
+                            Index: 2
+                        },
+                        {
+                            Id: $("#serviceHidden_3").val(),
+                            Title: $("#txtServiceReferenceTitle_3").val(),
+                            Url: $("#txtServiceReferenceUrl_3").val(),
+                            Index: 3
+                        }
+                    ],
+                'InformationReferences': [
+                    {
+                        Id: $("#inforHidden_1").val(),
+                        Title: $("#txtInformationReferenceTitle_1").val(),
+                        Url: $("#txtInformationReferenceUrl_1").val(),
+                        Index: 1
+                    },
+                    {
+                        Id: $("#inforHidden_2").val(),
+                        Title: $("#txtInformationReferenceTitle_2").val(),
+                        Url: $("#txtInformationReferenceUrl_2").val(),
+                        Index: 2
+                    },
+                    {
+                        Id: $("#inforHidden_3").val(),
+                        Title: $("#txtInformationReferenceTitle_3").val(),
+                        Url: $("#txtInformationReferenceUrl_3").val(),
+                        Index: 3
+                    }
+                ]
+            };
+
+            $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("UpdateNews")",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(model),
+                    success: function (data) {
+                        if (data.Response == "Success") {
+                            alert("Cập nhật thành công.");
+                            location.reload();
+                        }
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
+                });
+
+        });
+    });
+</script>
+
+<div class="edit-content">
+    <div class="card">
+        <div class="card-header bg-primary text-white">Thay đổi trang tin tức</div>
+        <div class="card-body">
+            <div class="col col-md-6">
+                <div class="form-group">
+                    <label for="email">Mã tin tức:</label>
+                    <input type="text" class="form-control" id="txtCode" disabled value="@Model.Code" placeholder="Nhập mã dịch vụ">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Tiêu đề tin tức:</label>
+                    <input type="text" class="form-control" id="txtName" value="@Model.Title" placeholder="Nhập tên dịch vụ">
+                </div>
+                <div class="form-group">
+                    <label for="email">Nội dung 1:</label>
+                    @Html.TextAreaFor(m => m.Content1)
+                    @*<textarea rows="10" class="form-control" id="txtContent1" placeholder="Nhập nội dung 1">@Model.Content1</textarea>*@
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Nội dung 2:</label>
+                    @Html.TextAreaFor(m => m.Content2)
+                    @*<textarea rows="10" class="form-control" id="txtContent2" placeholder="Nhập nội dung 2">@Model.Content2</textarea>*@
+                </div>
+            </div>
+            <div class="col col-md-6">
+                <div class="form-group">
+                    <label for="email">Nội dung 3:</label>
+                    @Html.TextAreaFor(m => m.Content3)
+                    @*<textarea rows="10" class="form-control" id="txtContent3" placeholder="Nhập nội dung 3">@Model.Content3</textarea>*@
+                </div>
+                <div class="form-group">
+                    <label for="email">Nội dung 4:</label>
+                    @Html.TextAreaFor(m => m.Content4)
+                    @*<textarea rows="10" class="form-control" id="txtContent4" placeholder="Nhập nội dung 4">@Model.Content4</textarea>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card margin-top-30">
+        <div class="card-header bg-primary text-white">Thay đổi dịch vụ đi kèm</div>
+        <div class="card-body">
+            @{ int index = 1; }
+            @foreach (var item in @Model.ServiceReferences)
+            {
+                <input type="hidden" value="@item.Id" id="serviceHidden_@index" />
+                <div class="row" style="width: 100%;">
+                    <div class="col col-md-12 margin-left-15">Dịch vụ đi kèm @index</div>
+                    <div class="col col-md-12 margin-top-20">
+                        <div class="col col-md-12">
+                            <div class="form-group">
+                                <label for="email">Tiêu đề:</label>
+                                <input type="text" class="form-control" id="txtServiceReferenceTitle_@index" value="@item.Title" placeholder="Nhập tiêu đề">
+                            </div>
+                        </div>
+                        <div class="col col-md-12">
+                            <div class="form-group">
+                                <label for="email">Đường dẫn:</label>
+                                <input type="text" class="form-control" id="txtServiceReferenceUrl_@index" value="@item.Url" placeholder="Nhập đường dẫn">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                index++;
+            }
+
+        </div>
+    </div>
+
+    <div class="card margin-top-30">
+        <div class="card-header bg-primary text-white">Thay đổi tin tức liên quan</div>
+        <div class="card-body">
+            @{ int index1 = 1; }
+            @foreach (var item in @Model.InformationReferences)
+            {
+                <input type="hidden" value="@item.Id" id="inforHidden_@index1" />
+                <div class="row" style="width: 100%;">
+                    <div class="col col-md-12 margin-left-15">Tin tức đi kèm @index1</div>
+                    <div class="col col-md-12 margin-top-20">
+                        <div class="col col-md-12">
+                            <div class="form-group">
+                                <label for="email">Tiêu đề:</label>
+                                <input type="text" class="form-control" id="txtInformationReferenceTitle_@index1" value="@item.Title" placeholder="Nhập tiêu đề">
+                            </div>
+                        </div>
+                        <div class="col col-md-12">
+                            <div class="form-group">
+                                <label for="email">Đường dẫn:</label>
+                                <input type="text" class="form-control" id="txtInformationReferenceUrl_@index1" value="@item.Url" placeholder="Nhập đường dẫn">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                index1++;
+            }
+        </div>
+    </div>
+
+    <div class="card margin-top-30">
+        <div class="card-header bg-primary text-white">Thay đổi ảnh tin tức</div>
+        <div class="card-body" style="display: block">
+            <div class="row-upload">
+                <div class="col col-md-4">
+                    <div class="form-group">
+                        <label for="email">Ảnh Banner 1</label>
+                        <div class="imageView">
+                            <input type="file" id="image1" /><br />
+                            @if (@Model.Image1_Url != null)
+                            {
+                                <img id="photo1" alt="Photo" src='@Model.Image1_Url' class="photo-view" />
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-4">
+                    <div class="form-group">
+                        <label for="email">Ảnh Banner 2</label>
+                        <div class="imageView">
+                            <input type="file" id="image2" /><br />
+                            @if (@Model.Image2_Url != null)
+                            {
+                                <img id="photo1" alt="Photo" src='@Model.Image2_Url' class="photo-view" />
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-4">
+                    <div class="form-group">
+                        <label for="email">Ảnh Banner 3</label>
+                        <div class="imageView">
+                            <input type="file" id="image3" /><br />
+                            @if (@Model.Image3_Url != null)
+                            {
+                                <img id="photo3" alt="Photo" src='@Model.Image3_Url' class="photo-view" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-upload">
+                <div class="col col-md-4">
+                    <div class="form-group">
+                        <label for="email">Ảnh Banner 1 Mobile</label>
+                        <div class="imageView">
+                            <input type="file" id="image1_mobile" /><br />
+                            @if (@Model.Image1_Mobile_Url != null)
+                            {
+                                <img id="photo1_mobile" alt="Photo" src='@Model.Image1_Mobile_Url' class="photo-view" />
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-4">
+                    <div class="form-group">
+                        <label for="email">Ảnh Banner 2 Mobile</label>
+                        <div class="imageView">
+                            <input type="file" id="image2_mobile" /><br />
+                            @if (@Model.Image2_Mobile_Url != null)
+                            {
+                                <img id="photo2_mobile" alt="Photo" src='@Model.Image2_Mobile_Url' class="photo-view" />
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-4">
+                    <div class="form-group">
+                        <label for="email">Ảnh Banner 3 Mobile</label>
+                        <div class="imageView">
+                            <input type="file" id="image3_mobile" /><br />
+                            @if (@Model.Image3_Mobile_Url != null)
+                            {
+                                <img id="photo3_mobile" alt="Photo" src='@Model.Image3_Mobile_Url' class="photo-view" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-upload">
+                <div class="col col-md-4">
+                    <div class="form-group">
+                        <label for="email">Ảnh thông tin 1</label>
+                        <div class="imageView">
+                            <input type="file" id="image4_1" /><br />
+                            @if (@Model.Image4_1_Url != null)
+                            {
+                                <img id="photo_4_1" alt="Photo" src='@Model.Image4_1_Url' class="photo-view" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-upload">
+                <div class="col col-md-4">
+                    <div class="form-group">
+                        <label for="email">Ảnh thông tin 2</label>
+                        <div class="imageView">
+                            <input type="file" id="image4_2" /><br />
+                            @if (@Model.Image4_2_Url != null)
+                            {
+                                <img id="photo_4_2" alt="Photo" src='@Model.Image4_2_Url' class="photo-view" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-upload">
+                <div class="col col-md-4">
+                    <div class="form-group">
+                        <label for="email">Ảnh thông tin 3</label>
+                        <div class="imageView">
+                            <input type="file" id="image4_3" /><br />
+                            @if (@Model.Image4_3_Url != null)
+                            {
+                                <img id="photo_4_3" alt="Photo" src='@Model.Image4_3_Url' class="photo-view" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-upload">
+                <div class="col col-md-4">
+                    <div class="form-group">
+                        <label for="email">Ảnh thông tin 4</label>
+                        <div class="imageView">
+                            <input type="file" id="image4_4" /><br />
+                            @if (@Model.Image4_4_Url != null)
+                            {
+                                <img id="photo_4_3" alt="Photo" src='@Model.Image4_4_Url' class="photo-view" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card margin-top-30">
+        <div class="card-header bg-primary text-white">Thay đổi ảnh dịch vụ liên quan</div>
+        <div class="card-body" style="display: block">
+            <div class="row-upload">
+                <div class="col col-md-4">
+                    <div class="form-group">
+                        <label for="email">Ảnh dịch vụ liên quan 1</label>
+                        <div class="imageView">
+                            <input type="file" id="imagerefer_1" /><br />
+                            @if (@Model.ServiceReferences.FirstOrDefault(m => m.Index == 1) != null)
+                            {
+                                <img id="photorefer_1" alt="Photo" src='@Model.ServiceReferences.FirstOrDefault(m => m.Index == 1).LogoUrl' class="photo-view" />
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-4">
+                    <div class="form-group">
+                        <label for="email">Ảnh dịch vụ liên quan 2</label>
+                        <div class="imageView">
+                            <input type="file" id="imagerefer_2" /><br />
+                            @if (@Model.ServiceReferences.FirstOrDefault(m => m.Index == 2) != null)
+                            {
+                                <img id="photorefer_2" alt="Photo" src='@Model.ServiceReferences.FirstOrDefault(m => m.Index == 2).LogoUrl' class="photo-view" />
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-4">
+                    <div class="form-group">
+                        <label for="email">Ảnh dịch vụ liên quan 3</label>
+                        <div class="imageView">
+                            <input type="file" id="imagerefer_3" /><br />
+                            @if (@Model.ServiceReferences.FirstOrDefault(m => m.Index == 3) != null)
+                            {
+                                <img id="photorefer_3" alt="Photo" src='@Model.ServiceReferences.FirstOrDefault(m => m.Index == 3).LogoUrl' class="photo-view" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card margin-top-30">
+        <div class="card-header bg-primary text-white">Thay đổi ảnh tin tức liên quan</div>
+        <div class="card-body" style="display: block">
+            <div class="row-upload">
+                <div class="col col-md-4">
+                    <div class="form-group">
+                        <label for="email">Ảnh tin tức liên quan 1</label>
+                        <div class="imageView">
+                            <input type="file" id="imageinformrefer_1" /><br />
+                            @if (@Model.InformationReferences.FirstOrDefault(m => m.Index == 1) != null)
+                            {
+                                <img id="photoinformrefer_1" alt="Photo" src='@Model.InformationReferences.FirstOrDefault(m => m.Index == 1).LogoUrl' class="photo-view" />
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-4">
+                    <div class="form-group">
+                        <label for="email">Ảnh tin tức liên quan 2</label>
+                        <div class="imageView">
+                            <input type="file" id="imageinformrefer_2" /><br />
+                            @if (@Model.InformationReferences.FirstOrDefault(m => m.Index == 2) != null)
+                            {
+                                <img id="photoinformrefer_2" alt="Photo" src='@Model.InformationReferences.FirstOrDefault(m => m.Index == 2).LogoUrl' class="photo-view" />
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-4">
+                    <div class="form-group">
+                        <label for="email">Ảnh tin tức liên quan 3</label>
+                        <div class="imageView">
+                            <input type="file" id="imageinformrefer_3" /><br />
+                            @if (@Model.ServiceReferences.FirstOrDefault(m => m.Index == 3) != null)
+                            {
+                                <img id="photoinformrefer_3" alt="Photo" src='@Model.InformationReferences.FirstOrDefault(m => m.Index == 3).LogoUrl' class="photo-view" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="buntton-content">
+        <input id="btnSave" class="btn btn-primary" value="Cập nhật" />
+        <input style="margin-left: 20px" id="btnDelete" class="btn btn-primary" value="Xóa" />
+    </div>
+</div>

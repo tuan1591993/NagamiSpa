@@ -1,0 +1,246 @@
+﻿@model IEnumerable<Dress_BLL.Model.BannerModel>
+@{
+    ViewBag.Title = "ManageUser";
+    Layout = "~/Views/Account/Admin.cshtml";
+    ViewData["Title"] = "Administration Console";
+    ViewBag.Home = "active";
+    var role = Session["Role"];
+}
+
+<script>
+    $(document).ready(function () {
+        $("#image_banner1").on('change', function () {
+            var data = new FormData();
+            var files = $("#image_banner1").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Id", 1);
+                data.append("Type", "Web");
+            }
+            $.ajax({
+                url: "@Url.Action("UploadImagebanner")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photo_banner1").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+
+        $("#image_banner2").on('change', function () {
+            var data = new FormData();
+            var files = $("#image_banner2").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Id", 3);
+                data.append("Type", "Web");
+            }
+            $.ajax({
+                url: "@Url.Action("UploadImageBanner")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photo_banner2").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+
+        $("#image_banner3").on('change', function () {
+            var data = new FormData();
+            var files = $("#image_banner3").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Id", 2);
+                data.append("Type", "Web");
+            }
+            $.ajax({
+                url: "@Url.Action("UploadImageBanner")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photo_banner3").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+
+        $("#image_banner1_mobile").on('change', function () {
+            var data = new FormData();
+            var files = $("#image_banner1_mobile").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Id", 1);
+                data.append("Type", "Mobile");
+            }
+            $.ajax({
+                url: "@Url.Action("UploadImageBanner")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photo_banner1_mobile").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+
+        $("#image_banner2_mobile").on('change', function () {
+            var data = new FormData();
+            var files = $("#image_banner2_mobile").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Id", 2);
+                data.append("Type", "Mobile");
+            }
+            $.ajax({
+                url: "@Url.Action("UploadImageBanner")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photo_banner2_mobile").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+
+        $("#image_banner3_mobile").on('change', function () {
+            var data = new FormData();
+            var files = $("#image_banner3_mobile").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Id", 3);
+                data.append("Type", "Mobile");
+            }
+            $.ajax({
+                url: "@Url.Action("UploadImageBanner")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    $("#photo_banner3_mobile").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+        });
+    });
+</script>
+
+<h2>Thay đổi ảnh slide Banner</h2>
+<div class="card margin-top-30">
+    <div class="card-header bg-primary text-white">Thay đổi ảnh bannber PC</div>
+    <div class="card-body">
+        <div class="col col-md-4">
+            <div class="form-group">
+                <label for="email">Ảnh 1 PC:</label>
+                <div class="imageView">
+                    @if (role.ToString() == "Edit" || role.ToString() == "Manager")
+                    {
+                        <input type="file" id="image_banner1" /><br />
+                    }
+                    <img id="photo_banner1" alt="Photo" src='@Model.FirstOrDefault(m=>m.Id == 1).Url' class="photo-view" />
+                </div>
+            </div>
+        </div>
+        <div class="col col-md-4">
+            <div class="form-group">
+                <label for="email">Ảnh 2 PC:</label>
+                <div class="imageView">
+                    @if (role.ToString() == "Edit" || role.ToString() == "Manager")
+                    {
+                        <input type="file" id="image_banner2" /><br />
+                    }
+
+                    <img id="photo_banner2" alt="Photo" src='@Model.FirstOrDefault(m=>m.Id == 3).Url' class="photo-view" />
+                </div>
+            </div>
+        </div>
+        <div class="col col-md-4">
+            <div class="form-group">
+                <label for="email">VideoPC:</label>
+                <div class="imageView">
+                    @if (role.ToString() == "Edit" || role.ToString() == "Manager")
+                    {
+                        <input type="file" id="image_banner3" /><br />
+                    }
+
+                    <video id="photo_banner3" width="100%" controls autoplay class="photo-view">
+                        <source src="@Model.FirstOrDefault(m=> m.Id == 2).Url" type="video/mp4">
+                        <source src="movie.ogg" type="video/ogg">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card margin-top-30">
+    <div class="card-header bg-primary text-white">Thay đổi ảnh bannber Mobile</div>
+    <div class="card-body">
+        <div class="col col-md-4">
+            <div class="form-group">
+                <label for="email">Ảnh 1 Mobile:</label>
+                <div class="imageView">
+                    @if (role.ToString() == "Edit" || role.ToString() == "Manager")
+                    {
+                        <input type="file" id="image_banner1_mobile" /><br />
+                    }
+
+                    <img id="photo_banner1_mobile" alt="Photo" src='@Model.FirstOrDefault(m=>m.Id == 1).Url_Mobile' class="photo-view" />
+                </div>
+            </div>
+        </div>
+        <div class="col col-md-4">
+            <div class="form-group">
+                <label for="email">Video 2 Mobile:</label>
+                <div class="imageView">
+                    @if (role.ToString() == "Edit" || role.ToString() == "Manager")
+                    {
+                        <input type="file" id="image_banner2_mobile" /><br />
+                    }
+
+                    <video id="photo_banner2_mobile" width="100%" controls autoplay class="photo-view">
+                        <source src="@Model.FirstOrDefault(m=> m.Id == 2).Url_Mobile" type="video/mp4">
+                        <source src="movie.ogg" type="video/ogg">
+                    </video>
+                </div>
+            </div>
+        </div>
+        <div class="col col-md-4">
+            <div class="form-group">
+                <label for="email">Ảnh 3 Mobile:</label>
+                <div class="imageView">
+                    @if (role.ToString() == "Edit" || role.ToString() == "Manager")
+                    {
+                        <input type="file" id="image_banner3_mobile" /><br />
+                    }
+                    
+                    <img id="photo_banner3_mobile" alt="Photo" src='@Model.FirstOrDefault(m=>m.Id == 3).Url_Mobile' class="photo-view" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

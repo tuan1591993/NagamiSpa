@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Dress_BLL.Model.ServiceDetailsModel>
+@{
+    ViewBag.Title = "ManageUser";
+    Layout = "~/Views/Account/Admin.cshtml";
+    ViewData["Title"] = "Administration Console";
+    ViewBag.Home = "active";
+    var role = Session["Role"].ToString();
+}
+<script>
+    function editService(code) {
+        location.href = '/Account/EditService?serviceCode=' + code;
+    }
+    function addService(code) {
+        location.href = '/Account/AddService';
+    }
+    $(document).ready(function () {
+
+    });
+</script>
+
+<div class="row">
+    <h2>Danh sách trang dịch vụ</h2>
+    @if (role == "Manager" || role == "Edit")
+    {
+        <div style="width: 100%; display:flex; margin-top: 30px">
+            <input type="button" id="edit" onclick="addService()" class="btn btn-primary" value="Thêm dịch vụ" />
+        </div>
+    }
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Mã trang dịch vụ</th>
+                <th>Tên trang dịch vụ</th>
+                <th>Từ khóa tìm kiếm</th>
+                <th>Dịch vụ liên quan</th>
+                <th>Tin tức liên quan</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="width: 10%">@item.ServiceDetails.Code</td>
+                    <td style="width: 10%">@item.ServiceDetails.Title</td>
+                    <td style="width: 20%; word-wrap: break-word; max-width: 300px;">@item.ServiceDetails.SearchKey</td>
+                    <td style="width: 20%;">
+                        @foreach (var item1 in item.ServiceReferences)
+                        {
+                            <p>@item1.Title </p>
+                        }
+                    </td>
+                    <td style="width: 20%;">
+                        @foreach (var item1 in item.InformationReferences)
+                        {
+                            <p>@item1.Title </p>
+                        }
+                    </td>
+                    <td style="width: 10%;">
+                        @if (role == "Manager" || role == "Edit")
+                        {
+                            <input type="button" id="edit" onclick="editService('@item.ServiceDetails.Code')" class="btn btn-primary" value="Chỉnh sửa" />
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

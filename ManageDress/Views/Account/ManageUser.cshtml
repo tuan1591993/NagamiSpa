@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Dress_BLL.Model.UserModel>
+@{
+    ViewBag.Title = "ManageUser";
+    Layout = "~/Views/Account/Admin.cshtml";
+    ViewData["Title"] = "Administration Console";
+    ViewBag.Home = "active";
+    var role = Session["Role"];
+}
+
+<script>
+    function editUser(id) {
+        location.href = '/Account/EditUser?id=' + id;
+    }
+    function addUser() {
+        location.href = '/Account/AddUser';
+    }
+    $(document).ready(function () {
+
+    });
+</script>
+
+<div class="row">
+    <h2>Danh sách người dùng</h2>
+    @if (role.ToString() == "Manager")
+    {
+        <div style="width: 100%; display:flex; margin-top: 30px">
+            <input type="button" id="edit" onclick="addUser()" class="btn btn-primary" value="Thêm người dùng" />
+        </div>
+    }
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Tên đăng nhập</th>
+                <th>Họ tên</th>
+                <th>Số điện thoại</th>
+                <th>Quyền hạn</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.UserName</td>
+                    <td>@item.FullName</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Role</td>
+                    <td>
+                        @if (role.ToString() == "Manager")
+                        {
+                            <input type="button" id="edit" onclick="editUser('@item.Id')" class="btn btn-primary" value="Chỉnh sửa" />
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

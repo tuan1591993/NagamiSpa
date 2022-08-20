@@ -1,0 +1,118 @@
+﻿@model Dress_BLL.Model.ShopModel
+@{
+    ViewBag.Title = "ManageUser";
+    Layout = "~/Views/Account/Admin.cshtml";
+    ViewData["Title"] = "Administration Console";
+    ViewBag.Home = "active";
+    var role = Session["Role"];
+}
+
+<script>
+    $(document).ready(function () {
+        $("#btnSave").click(function () {
+            var model = {
+                Id: 1,
+                Youtube_Url: $("#txtYoutube").val(),
+                Facebook_Url: $("#txtFb").val(),
+                Instagram_Url: $("#txtInsta").val(),
+                Zalo_Url: $("#txtZalo").val(),
+                TickToc_Url: $("#txtTikTok").val(),
+                HotLine: $("#txtPhone").val(),
+                Title: $("#txtTitle").val(),
+                Address: $("#txtAddress").val(),
+                WorkHour: $("#txtWork").val(),
+                Slogen: $("#txtSlogen").val(),
+                Logo_Url: $("#txtDV").val(),
+                Owner: $("#txtDK").val(),
+                Email: $("#txtMST").val()
+            };
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("UpdateShop")",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(model),
+                    success: function (data) {
+                        if (data.Response == "Success") {
+                            alert("Cập nhật thông tin thẩm mỹ viện thành công.");
+                        }
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
+                });
+        })
+    });
+</script>
+
+<div class="edit-content">
+    <div class="card">
+        <div class="card-header bg-primary text-white">Thay đổi thông tin thẩm mỹ viện</div>
+        <div class="card-body">
+            <div class="col col-md-6">
+                <div class="form-group">
+                    <label for="email">Link Facebook</label>
+                    <input type="text" class="form-control" id="txtFb" value="@Model.Facebook_Url" placeholder="Nhập link Facebook">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Link Youtube</label>
+                    <input type="text" class="form-control" id="txtYoutube" value="@Model.Youtube_Url" placeholder="Nhập link Youtube">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Số điện thoại</label>
+                    <input type="text" class="form-control" id="txtPhone" value="@Model.HotLine">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Địa chỉ</label>
+                    <input type="text" class="form-control" id="txtAddress" value="@Model.Address">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Lời cam kết</label>
+                    <input type="text" class="form-control" id="txtSlogen" value="@Model.Slogen">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Đơn vị chủ quản</label>
+                    <input type="text" class="form-control" id="txtDV" value="@Model.Logo_Url">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Đăng ký lần đầu ngày</label>
+                    <input type="text" class="form-control" id="txtDK" value="@Model.Owner">
+                </div>
+            </div>
+            <div class="col col-md-6">
+                <div class="form-group">
+                    <label for="email">Link Instagram</label>
+                    <input type="text" class="form-control" id="txtInsta" value="@Model.Instagram_Url">
+                </div>
+                <div class="form-group">
+                    <label for="email">Link Tiktok</label>
+                    <input type="text" class="form-control" id="txtTikTok" value="@Model.TickToc_Url">
+                </div>
+                <div class="form-group">
+                    <label for="email">Link Zalo</label>
+                    <input type="text" class="form-control" id="txtZalo" value="@Model.Zalo_Url">
+                </div>
+                <div class="form-group">
+                    <label for="dv">Giờ làm việc</label>
+                    <input type="text" class="form-control" id="txtWork" value="@Model.WorkHour">
+                </div>
+                <div class="form-group">
+                    <label for="dk">Lời giới thiệu</label>
+                    <input type="text" class="form-control" id="txtTitle" value="@Model.Title">
+                </div>
+                <div class="form-group">
+                    <label for="qd">Mã số thuế / Mã số doanh nghiệp</label>
+                    <input type="text" class="form-control" id="txtMST" value="@Model.Email">
+                </div>
+            </div>
+        </div>
+        @if (role.ToString() == "Manager" || role.ToString() == "Edit")
+        {
+            <div class="card-footer text-center">
+                <input type="button" class="btn btn-primary btn-save" id="btnSave" value="Cập nhật" />
+            </div>
+        }
+
+    </div>
+</div>

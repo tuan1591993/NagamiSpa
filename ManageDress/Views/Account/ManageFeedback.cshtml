@@ -1,0 +1,107 @@
+﻿@model IEnumerable<Dress_BLL.Model.FeedbackModel>
+@{
+    ViewBag.Title = "ManageFeedback";
+    Layout = "~/Views/Account/Admin.cshtml";
+    ViewData["Title"] = "Administration Console";
+    ViewBag.Home = "active";
+}
+<head>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <link id="bsdp-css" href="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+    <script src="~/Scripts/jquery.table2excel.min.js"></script>
+</head>
+<script>
+    var sFileName = 'data';
+    function ExportXLSX() {
+        $("#myTable").table2excel({
+            // exclude CSS class 
+            exclude: ".noExl",
+            name: "Worksheet Name",
+            filename: "data.xls" //do not include extension
+        });
+    }
+
+    $(document).ready(function () {
+        $("#datepicker").datepicker({
+            format: 'dd/mm/yyyy'
+        });
+
+        $("#btnSearch").click(function () {
+            var model = {
+                'Phone': $("#txtPhone").val(),
+                'ServiceKey': $("#txtNote").val(),
+                'Date': $("#txtDate").val()
+            };
+
+            $.ajax({
+               type: "POST",
+               url: "@Url.Action("FilterFeedback")",
+               dataType: "json",
+               contentType: "application/json; charset=utf-8",
+               data: JSON.stringify(model),
+                success: function (data) {
+                    var html = "";
+
+                    for (var i = 0; i < data.Response.length; i++) {
+                        html += "<tr><td>" + data.Response[i].Name + "</td><td>" + data.Response[i].Phone + "</td><td>" + data.Response[i].Email + "</td><td>" + data.Response[i].Note + "</td></td><td>" + data.Response[i].DateView + "</td></tr>";
+                    }
+
+                    $("tbody").html(html)
+               },
+               failure: function (errMsg) {
+                   alert(errMsg);
+               }
+            });
+        });
+    });
+</script>
+<div class="row">
+    <h2>Danh sách yêu cầu tư vấn</h2>
+    <div class="form-search">
+        <div class="col col-md-2">
+            <input type="text" id="txtPhone" class="form-control" placeholder="Nhập số điện thoại" />
+        </div>
+        <div class="col col-md-2">
+            <input type="text" id="txtNote" class="form-control" placeholder="Nhập yêu cầu" />
+        </div>
+        <div class="col col-md-2">
+            @*<input type="text" id="datepicker" placeholder="Nhập ngày cần tìm kiếm" class="form-control">*@
+            <div class="form-group">
+                <div class='input-group date' id='datepicker'>
+                    <input type='text' id="txtDate" class="form-control" placeholder="Nhập ngày tháng năm tìm kiếm" />
+                    <div class="input-group-addon">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col col-md-2">
+            <input type="button" value="Tìm Kiếm" id="btnSearch" class="btn btn-primary" />
+        </div>
+        <div class="col col-md-4">
+            <input type="button" value="Xuất Excel" onClick="ExportXLSX();" id="btnExport" class="btn btn-primary" style="float: right;" />
+        </div>
+    </div>
+    <table id="myTable" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Họ tên</th>
+                <th>Số điện thoại</th>
+                <th>Email</th>
+                <th>Yêu cầu tư vấn</th>
+                <th>Ngày yêu cầu</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in @Model)
+            {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Phone</td>
+                <td>@item.Email</td>
+                <td>@item.Note</td>
+                <td>@item.DateView</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

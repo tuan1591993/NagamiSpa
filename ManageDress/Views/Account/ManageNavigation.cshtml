@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Dress_BLL.Model.NavigationModel>
+@{
+    ViewBag.Title = "ManageFeedback";
+    Layout = "~/Views/Account/Admin.cshtml";
+    ViewData["Title"] = "Administration Console";
+    ViewBag.Home = "active";
+}
+
+<script>
+    function editNavigation(id) {
+        location.href = '/Account/EditNavigation?id=' + id;
+    }
+    function addNavigation(code) {
+        location.href = '/Account/AddNavigation';
+    }
+    $(document).ready(function () {
+
+    });
+</script>
+
+<div class="row">
+    <h2>Danh sách các trang dịch vụ</h2>
+    <div style="width: 100%; display:flex; margin-top: 30px">
+        <input type="button" id="edit" onclick="addNavigation()" class="btn btn-primary" value="Thêm đường dẫn" />
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Tiêu đề</th>
+                <th>Đường dẫn</th>
+                <th>Phân nhóm</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Link</td>
+                <td>@item.Group</td>
+                <td>
+                    <input type="button" id="edit" onclick="editNavigation('@item.Id')" class="btn btn-primary" value="Chỉnh sửa" />
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,123 @@
+﻿@model Dress_BLL.Model.UserModel
+@{
+    ViewBag.Title = "ManageUser";
+    Layout = "~/Views/Account/Admin.cshtml";
+    ViewData["Title"] = "Administration Console";
+    ViewBag.Home = "active";
+}
+
+<script>
+    $(document).ready(function () {
+        $('select option:contains("@Model.Role")').prop('selected', true);
+        $("#btnSave").click(function () {
+            var model = {
+                'Id': @Model.Id,
+                'UserName': $("#txtUserName").val(),
+                'FullName': $("#txtFullname").val(),
+                'Email': $('#txtEmail').val(),
+                'Password': $('#txtPassword').val(),
+                'Phone': $('#txtPhone').val(),
+                'Role': $("#ddlRole").find(":selected").val()
+            }
+
+            $.ajax({
+               type: "POST",
+               url: "@Url.Action("AddOrUpdateUser")",
+               dataType: "json",
+               contentType: "application/json; charset=utf-8",
+               data: JSON.stringify(model),
+               success: function (data) {
+                   if (data.Response == "Success") {
+                       alert("Cập nhật thành công.");
+                   }
+               },
+               failure: function (errMsg) {
+                   alert(errMsg);
+               }
+            });
+        });
+
+        $("#btnDelete").click(function () {
+
+            var model = {
+                'Id': @Model.Id,
+            }
+
+            $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("DeleteUser")",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(model),
+                    success: function (data) {
+                        if (data.Response == "Success") {
+                            alert("Xóa bản ghi thành công.");
+                            location.href = '/Account/ManageUser';
+                        }
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
+                });
+
+        });
+    });
+</script>
+
+<div class="edit-content">
+    <div class="card">
+        <div class="card-header bg-primary text-white">Sửa thông tin User</div>
+        <div class="card-body" style="display: block;">
+            <div class="row" style="width: 100%;">
+                <div class="col col-md-6">
+                    <div class="form-group">
+                        <label for="email">Tài khoản</label>
+                        <input type="text" class="form-control" id="txtUserName" value="@Model.UserName" placeholder="Nhập tên tài khoản">
+                    </div>
+                </div>
+                <div class="col col-md-6">
+                    <div class="form-group">
+                        <label for="email">Họ tên:</label>
+                        <input type="text" class="form-control" id="txtFullname" value="@Model.FullName" placeholder="Nhập họ tên">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="width: 100%;">
+                <div class="col col-md-6">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="text" class="form-control" id="txtEmail" value="@Model.Email" placeholder="Nhập Email">
+                    </div>
+                </div>
+                <div class="col col-md-6">
+                    <div class="form-group">
+                        <label for="email">Mật khẩu:</label>
+                        <input type="text" class="form-control" id="txtPassword" value="@Model.Password" placeholder="Nhập Password">
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="width: 100%;">
+                <div class="col col-md-6">
+                    <div class="form-group">
+                        <label for="email">Số điện thoại:</label>
+                        <input type="text" class="form-control" id="txtPhone" value="@Model.Phone" placeholder="Nhập số điện thoại">
+                    </div>
+                </div>
+                <div class="col col-md-6">
+                    <div class="form-group">
+                        <label for="email">Quyền hạn:</label>
+                        <select class="form-control" id="ddlRole" value="@Model.Role">
+                            <option value="Edit">Manager</option>
+                            <option value="Edit">Edit</option>
+                            <option value="View">View</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="buntton-content">
+        <input id="btnSave" class="btn btn-primary" value="Cập nhật" />
+        <input style="margin-left: 20px" id="btnDelete" class="btn btn-primary" value="Xóa" />
+    </div>
+</div>

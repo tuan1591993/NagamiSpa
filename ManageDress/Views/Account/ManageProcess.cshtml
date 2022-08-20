@@ -1,0 +1,182 @@
+﻿@model IEnumerable<Dress_BLL.Model.ProcessSurgeryModel>
+@{
+    ViewBag.Title = "ManageUser";
+    Layout = "~/Views/Account/Admin.cshtml";
+    ViewData["Title"] = "Administration Console";
+    ViewBag.Home = "active";
+    var role = Session["Role"];
+}
+
+<div class="row">
+    <h2>Thay đổi quy trình thực hiện</h2>
+</div>
+
+<script>
+    $(document).ready(function () {
+        for (let i = 1; i <= @Model.Where(m => m.Key != "Mobile").Count(); i++) {
+            $("#image_" + i).on('change', function () {
+                var data = new FormData();
+                var files = $("#image_" + i).get(0).files;
+                if (files.length > 0) {
+                    data.append("HelpSectionImages", files[0]);
+                    data.append("Id", $("#hidden_" + i).val());
+                }
+                $.ajax({
+                    url: "@Url.Action("UploadImageProcess")",
+                    type: "POST",
+                    processData: false,
+                    contentType: false,
+                    data: data,
+                    success: function (response) {
+                        $("#photo_" + i).attr("src", response.ImagePath);
+                    },
+                    error: function (er) {
+                        alert(er);
+                    }
+                });
+            });
+        }
+
+        $("#image_mobile").on('change', function () {
+             var data = new FormData();
+             var files = $("#image_mobile").get(0).files;
+             if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+                data.append("Id", $("#hidden_mobile").val());
+             }
+
+             $.ajax({
+                url: "@Url.Action("UploadImageProcess")",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                     $("#photo_mobile").attr("src", response.ImagePath);
+                },
+                error: function (er) {
+                    alert(er);
+                }
+             });
+        });
+
+        $("#btnSave").click(function () {
+            var listModel = [];
+            for (let i = 1; i <=@Model.Where(m => m.Key != "Mobile" && m.Index != 0).ToList().Count(); i++) {
+                var model = {
+                    'Id': $("#txtHidden_" + i).val(),
+                    'Title': $("#txtTitle_" + i).val(),
+                    'Content': $("#txtContent_" + i).val()
+                    'Content_Show': $("#txtContentShow_" + i).val()
+                }
+                listModel.push(model);
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("UpdateProcessSurgery")",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(listModel),
+                success: function (data) {
+                   if (data.Response == "Success") {
+                       alert("Cập nhật thành công.");
+                   }
+                },
+                failure: function (errMsg) {
+                   alert(errMsg);
+                }
+            });
+        });
+    });
+</script>
+
+<div class="card margin-top-30">
+    <div class="card-header bg-primary text-white">Thay đổi ảnh quy trình PC</div>
+    <div class="card-body" style="display:block">
+        <div class="location col-md-12">
+            @{ int index = 1; }
+            @foreach (var item in @Model.Where(m => m.Key != "Mobile"))
+            {
+                <div class="col col-md-4 pull-left">
+                    <div class="form-group">
+                        <label for="email">Ảnh @index:</label>
+                        <div class="imageView">
+                            <input type="hidden" id="hidden_@index" value="@item.Id" />
+                            @if (role.ToString() == "Edit" || role.ToString() == "Manager")
+                            {
+                                <input type="file" id="image_@index" /><br />
+                            }
+
+                            <img id="photo_@index" alt="Photo" src='@item.ImageUrl' class="photo-view" />
+                        </div>
+                    </div>
+                </div>
+                index++;
+            }
+        </div>
+    </div>
+</div>
+
+<div class="card margin-top-30">
+    <div class="card-header bg-primary text-white">Thay đổi ảnh quy trình Mobile</div>
+    <div class="card-body">
+        <div class="location col-md-6">
+
+            <div class="col col-md-4">
+                <div class="form-group">
+                    <label for="email">Ảnh mobile:</label>
+                    <div class="imageView">
+                        @if (role.ToString() == "Edit" || role.ToString() == "Manager")
+                        {
+                            <input type="file" id="image_mobile" /><br />
+                        }
+                        <input type="hidden" id="hidden__mobile" value="@Model.FirstOrDefault(m =>m.Key == "Mobile").Id" />
+                        <img id="photo_mobile" alt="Photo" src='@Model.FirstOrDefault(m =>m.Key == "Mobile").ImageUrl' class="photo-view" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card margin-top-30">
+    <div class="card-header bg-primary text-white">Thay đổi nội dung các bước</div>
+    <div class="card-body" style="display: block">
+        @{ int index1 = 1; }
+        @foreach (var item in @Model.Where(m => m.Key != "Mobile" && m.Index != 0))
+        {
+            <input type="hidden" id="txtHidden_@index1" value="@item.Id" />
+            <div class="row" style="width: 100%;">
+                <div class="col col-md-4">
+                    <div class="form-group">
+                        <label for="email">Tiêu đề bước @index1:</label>
+                        <input type="text" class="form-control" id="txtTitle_@index1" value="@item.Title" placeholder="Nhập tiêu đề">
+                    </div>
+                </div>
+
+                <div class="col col-md-4">
+                    <div class="form-group">
+                        <label for="email">Nội dung @index1:</label>
+                        <textarea class="form-control" rows="5" id="txtContent_@index1" placeholder="Nhập nội dung">@item.Content</textarea>
+                    </div>
+                </div>
+
+                <div class="col col-md-4">
+                    <div class="form-group">
+                        <label for="email">Nội dung hiển thị @index1:</label>
+                        <textarea class="form-control" rows="5" id="txtContentShow_@index1" placeholder="Nhập nội dung">@item.Content_Show</textarea>
+                    </div>
+                </div>
+            </div>
+
+            index1++;
+        }
+    </div>
+</div>
+@if (role.ToString() == "Manager" || role.ToString() == "Edit")
+{
+    <div class="buntton-content">
+        <input id="btnSave" class="btn btn-primary" value="Cập nhật" />
+    </div>
+}

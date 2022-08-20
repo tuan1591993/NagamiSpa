@@ -1,0 +1,880 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="hkv00123_BeautySalonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Attachment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Type" Type="nvarchar" MaxLength="20" />
+          <Property Name="Url" Type="nvarchar" MaxLength="550" />
+          <Property Name="Service_Id" Type="int" />
+          <Property Name="Post_Id" Type="int" />
+          <Property Name="Index_Attactment" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Banner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="Url_Mobile" Type="nvarchar" MaxLength="500" />
+          <Property Name="Index" Type="int" />
+        </EntityType>
+        <EntityType Name="CustomerResult">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="VideoUrl" Type="nvarchar" MaxLength="500" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ImageGroupUrl" Type="nvarchar" MaxLength="500" />
+          <Property Name="ServiceName" Type="nvarchar" MaxLength="250" />
+          <Property Name="ImageBeforeUrl" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImageAfterUrl" Type="nvarchar" MaxLength="500" />
+          <Property Name="IndexImage" Type="int" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Note" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GroupPost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="HighlightService">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Key" Type="nvarchar" MaxLength="50" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="Index" Type="int" />
+        </EntityType>
+        <EntityType Name="ImageHome">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Url" Type="nvarchar" MaxLength="550" />
+          <Property Name="Index" Type="int" />
+          <Property Name="Title" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="InformationReference">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceDetails_ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="LogoUrl" Type="nvarchar" MaxLength="500" />
+          <Property Name="Index" Type="int" />
+        </EntityType>
+        <EntityType Name="Navigation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Link" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Parent" Type="int" />
+          <Property Name="Group" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="NewsArticles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="Content1" Type="ntext" />
+          <Property Name="Image1_Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="Content2" Type="ntext" />
+          <Property Name="Image2_Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="Content3" Type="ntext" />
+          <Property Name="Image3_Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="Content4" Type="ntext" />
+          <Property Name="Image4_1_Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="Image4_2_Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="Image4_3_Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="Image4_4_Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="Image1_Mobile_Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="Image2_Mobile_Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="Image3_Mobile_Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="Image4_1_Mobile_Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="Image4_2_Mobile_Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="Image4_3_Mobile_Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="Image4_4_Mobile_Url" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="NewsInfoRefer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="News_ID" Type="int" Nullable="false" />
+          <Property Name="Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="LogoUrl" Type="nvarchar" MaxLength="100" />
+          <Property Name="Index" Type="int" />
+        </EntityType>
+        <EntityType Name="NewsServiceRefer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="News_ID" Type="int" Nullable="false" />
+          <Property Name="Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="LogoUrl" Type="nvarchar" MaxLength="100" />
+          <Property Name="Index" Type="int" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupPost_ID" Type="int" />
+          <Property Name="Content" Type="ntext" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ProcessSurgery">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Key" Type="nvarchar" MaxLength="50" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="500" />
+          <Property Name="Title" Type="nvarchar" MaxLength="250" />
+          <Property Name="Content" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Index" Type="int" />
+          <Property Name="Content_Show" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Salon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Youtube_Url" Type="nvarchar" MaxLength="250" />
+          <Property Name="Logo_Url" Type="nvarchar" MaxLength="250" />
+          <Property Name="Zalo_Url" Type="nvarchar" MaxLength="250" />
+          <Property Name="Facebook_Url" Type="nvarchar" MaxLength="250" />
+          <Property Name="Instagram_Url" Type="nvarchar" MaxLength="250" />
+          <Property Name="TickToc_Url" Type="nvarchar" MaxLength="250" />
+          <Property Name="HotLine" Type="nvarchar" MaxLength="250" />
+          <Property Name="Title" Type="nvarchar" MaxLength="250" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="Slogen" Type="nvarchar" MaxLength="500" />
+          <Property Name="Owner" Type="nvarchar" MaxLength="250" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="WorkHour" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ServiceDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Title" Type="nvarchar" MaxLength="250" />
+          <Property Name="Title1" Type="nvarchar" MaxLength="250" />
+          <Property Name="Content1" Type="ntext" />
+          <Property Name="Title2" Type="nvarchar" MaxLength="250" />
+          <Property Name="Content2" Type="ntext" />
+          <Property Name="Title3" Type="nvarchar" MaxLength="250" />
+          <Property Name="Title4" Type="nvarchar" MaxLength="250" />
+          <Property Name="Title5" Type="nvarchar" MaxLength="250" />
+          <Property Name="Title6" Type="nvarchar" MaxLength="250" />
+          <Property Name="Title7" Type="nvarchar" MaxLength="250" />
+          <Property Name="SearchKey" Type="nvarchar" MaxLength="2000" />
+          <Property Name="NumberOfObjects" Type="int" />
+        </EntityType>
+        <EntityType Name="ServiceReference">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceDetails_ID" Type="int" Nullable="false" />
+          <Property Name="Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="LogoUrl" Type="nvarchar" MaxLength="100" />
+          <Property Name="Index" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="250" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="250" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="Avatar" Type="nvarchar" MaxLength="500" />
+          <Property Name="Salary" Type="nvarchar" MaxLength="50" />
+          <Property Name="BirthDay" Type="date" />
+          <Property Name="IdentityNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_Post_GroupPost">
+          <End Role="GroupPost" Type="Self.GroupPost" Multiplicity="0..1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupPost">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="GroupPost_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="hkv00123_BeautySalonModelStoreContainer">
+          <EntitySet Name="Attachment" EntityType="Self.Attachment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Banner" EntityType="Self.Banner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerResult" EntityType="Self.CustomerResult" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupPost" EntityType="Self.GroupPost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HighlightService" EntityType="Self.HighlightService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImageHome" EntityType="Self.ImageHome" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InformationReference" EntityType="Self.InformationReference" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Navigation" EntityType="Self.Navigation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewsArticles" EntityType="Self.NewsArticles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewsInfoRefer" EntityType="Self.NewsInfoRefer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewsServiceRefer" EntityType="Self.NewsServiceRefer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProcessSurgery" EntityType="Self.ProcessSurgery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Salon" EntityType="Self.Salon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceDetails" EntityType="Self.ServiceDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceReference" EntityType="Self.ServiceReference" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Post_GroupPost" Association="Self.FK_Post_GroupPost">
+            <End Role="GroupPost" EntitySet="GroupPost" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="hkv00123_BeautySalonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Attachment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Name="Service_Id" Type="Int32" />
+          <Property Name="Post_Id" Type="Int32" />
+          <Property Name="Index_Attactment" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CustomerResult">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="VideoUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImageGroupUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ServiceName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ImageBeforeUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ImageAfterUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IndexImage" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="GroupPost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Posts" Relationship="Self.FK_Post_GroupPost" FromRole="GroupPost" ToRole="Post" />
+        </EntityType>
+        <EntityType Name="HighlightService">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Index" Type="Int32" />
+        </EntityType>
+        <EntityType Name="InformationReference">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceDetails_ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LogoUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Index" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupPost_ID" Type="Int32" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GroupPost" Relationship="Self.FK_Post_GroupPost" FromRole="Post" ToRole="GroupPost" />
+        </EntityType>
+        <EntityType Name="ProcessSurgery">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Index" Type="Int32" />
+          <Property Name="Content_Show" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ServiceDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Title1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Content1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Title2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Content2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Title3" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Title4" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Title5" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Title6" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Title7" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SearchKey" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOfObjects" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ServiceReference">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceDetails_ID" Type="Int32" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LogoUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Index" Type="Int32" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDay" Type="DateTime" Precision="0" />
+          <Property Name="IdentityNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Post_GroupPost">
+          <End Role="GroupPost" Type="Self.GroupPost" Multiplicity="0..1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupPost">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="GroupPost_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="hkv00123_BeautySalonEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Attachments" EntityType="Self.Attachment" />
+          <EntitySet Name="CustomerResults" EntityType="Self.CustomerResult" />
+          <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
+          <EntitySet Name="GroupPosts" EntityType="Self.GroupPost" />
+          <EntitySet Name="HighlightServices" EntityType="Self.HighlightService" />
+          <EntitySet Name="InformationReferences" EntityType="Self.InformationReference" />
+          <EntitySet Name="Posts" EntityType="Self.Post" />
+          <EntitySet Name="ProcessSurgeries" EntityType="Self.ProcessSurgery" />
+          <EntitySet Name="ServiceDetails" EntityType="Self.ServiceDetail" />
+          <EntitySet Name="ServiceReferences" EntityType="Self.ServiceReference" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Post_GroupPost" Association="Self.FK_Post_GroupPost">
+            <End Role="GroupPost" EntitySet="GroupPosts" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+          <EntitySet Name="Banners" EntityType="hkv00123_BeautySalonModel.Banner" />
+          <EntitySet Name="Navigations" EntityType="hkv00123_BeautySalonModel.Navigation" />
+          <EntitySet Name="ImageHomes" EntityType="hkv00123_BeautySalonModel.ImageHome" />
+          <EntitySet Name="Salons" EntityType="hkv00123_BeautySalonModel.Salon" />
+          <EntitySet Name="NewsArticles" EntityType="hkv00123_BeautySalonModel.NewsArticle" />
+          <EntitySet Name="NewsInfoRefers" EntityType="hkv00123_BeautySalonModel.NewsInfoRefer" />
+          <EntitySet Name="NewsServiceRefers" EntityType="hkv00123_BeautySalonModel.NewsServiceRefer" />
+        </EntityContainer>
+        <EntityType Name="Banner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Url_Mobile" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Index" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Navigation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Parent" Type="Int32" />
+          <Property Name="Group" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ImageHome">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Name="Index" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Salon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Youtube_Url" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Logo_Url" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Zalo_Url" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Facebook_Url" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Instagram_Url" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="TickToc_Url" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="HotLine" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Slogen" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Owner" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="WorkHour" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NewsArticle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Content1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image1_Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Content2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image2_Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Content3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image3_Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Content4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image4_1_Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Image4_2_Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Image4_3_Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Image4_4_Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Image1_Mobile_Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Image2_Mobile_Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Image3_Mobile_Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Image4_1_Mobile_Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Image4_2_Mobile_Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Image4_3_Mobile_Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Image4_4_Mobile_Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NewsInfoRefer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="News_ID" Type="Int32" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LogoUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Index" Type="Int32" />
+        </EntityType>
+        <EntityType Name="NewsServiceRefer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="News_ID" Type="Int32" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LogoUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Index" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="hkv00123_BeautySalonModelStoreContainer" CdmEntityContainer="hkv00123_BeautySalonEntities">
+          <EntitySetMapping Name="Attachments">
+            <EntityTypeMapping TypeName="hkv00123_BeautySalonModel.Attachment">
+              <MappingFragment StoreEntitySet="Attachment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Service_Id" ColumnName="Service_Id" />
+                <ScalarProperty Name="Post_Id" ColumnName="Post_Id" />
+                <ScalarProperty Name="Index_Attactment" ColumnName="Index_Attactment" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerResults">
+            <EntityTypeMapping TypeName="hkv00123_BeautySalonModel.CustomerResult">
+              <MappingFragment StoreEntitySet="CustomerResult">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="VideoUrl" ColumnName="VideoUrl" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="ImageGroupUrl" ColumnName="ImageGroupUrl" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+                <ScalarProperty Name="ImageBeforeUrl" ColumnName="ImageBeforeUrl" />
+                <ScalarProperty Name="ImageAfterUrl" ColumnName="ImageAfterUrl" />
+                <ScalarProperty Name="IndexImage" ColumnName="IndexImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feedbacks">
+            <EntityTypeMapping TypeName="hkv00123_BeautySalonModel.Feedback">
+              <MappingFragment StoreEntitySet="Feedback">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupPosts">
+            <EntityTypeMapping TypeName="hkv00123_BeautySalonModel.GroupPost">
+              <MappingFragment StoreEntitySet="GroupPost">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HighlightServices">
+            <EntityTypeMapping TypeName="hkv00123_BeautySalonModel.HighlightService">
+              <MappingFragment StoreEntitySet="HighlightService">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Index" ColumnName="Index" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InformationReferences">
+            <EntityTypeMapping TypeName="hkv00123_BeautySalonModel.InformationReference">
+              <MappingFragment StoreEntitySet="InformationReference">
+                <ScalarProperty Name="Index" ColumnName="Index" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ServiceDetails_ID" ColumnName="ServiceDetails_ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="LogoUrl" ColumnName="LogoUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="hkv00123_BeautySalonModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GroupPost_ID" ColumnName="GroupPost_ID" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcessSurgeries">
+            <EntityTypeMapping TypeName="hkv00123_BeautySalonModel.ProcessSurgery">
+              <MappingFragment StoreEntitySet="ProcessSurgery">
+                <ScalarProperty Name="Content_Show" ColumnName="Content_Show" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Index" ColumnName="Index" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceDetails">
+            <EntityTypeMapping TypeName="hkv00123_BeautySalonModel.ServiceDetail">
+              <MappingFragment StoreEntitySet="ServiceDetails">
+                <ScalarProperty Name="NumberOfObjects" ColumnName="NumberOfObjects" />
+                <ScalarProperty Name="SearchKey" ColumnName="SearchKey" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Title1" ColumnName="Title1" />
+                <ScalarProperty Name="Content1" ColumnName="Content1" />
+                <ScalarProperty Name="Title2" ColumnName="Title2" />
+                <ScalarProperty Name="Content2" ColumnName="Content2" />
+                <ScalarProperty Name="Title3" ColumnName="Title3" />
+                <ScalarProperty Name="Title4" ColumnName="Title4" />
+                <ScalarProperty Name="Title5" ColumnName="Title5" />
+                <ScalarProperty Name="Title6" ColumnName="Title6" />
+                <ScalarProperty Name="Title7" ColumnName="Title7" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceReferences">
+            <EntityTypeMapping TypeName="hkv00123_BeautySalonModel.ServiceReference">
+              <MappingFragment StoreEntitySet="ServiceReference">
+                <ScalarProperty Name="Index" ColumnName="Index" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ServiceDetails_ID" ColumnName="ServiceDetails_ID" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="LogoUrl" ColumnName="LogoUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="hkv00123_BeautySalonModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="hkv00123_BeautySalonModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="IdentityNo" ColumnName="IdentityNo" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Banners">
+            <EntityTypeMapping TypeName="hkv00123_BeautySalonModel.Banner">
+              <MappingFragment StoreEntitySet="Banner">
+                <ScalarProperty Name="Index" ColumnName="Index" />
+                <ScalarProperty Name="Url_Mobile" ColumnName="Url_Mobile" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Navigations">
+            <EntityTypeMapping TypeName="hkv00123_BeautySalonModel.Navigation">
+              <MappingFragment StoreEntitySet="Navigation">
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="Parent" ColumnName="Parent" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImageHomes">
+            <EntityTypeMapping TypeName="hkv00123_BeautySalonModel.ImageHome">
+              <MappingFragment StoreEntitySet="ImageHome">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Index" ColumnName="Index" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Salons">
+            <EntityTypeMapping TypeName="hkv00123_BeautySalonModel.Salon">
+              <MappingFragment StoreEntitySet="Salon">
+                <ScalarProperty Name="WorkHour" ColumnName="WorkHour" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="Slogen" ColumnName="Slogen" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="HotLine" ColumnName="HotLine" />
+                <ScalarProperty Name="TickToc_Url" ColumnName="TickToc_Url" />
+                <ScalarProperty Name="Instagram_Url" ColumnName="Instagram_Url" />
+                <ScalarProperty Name="Facebook_Url" ColumnName="Facebook_Url" />
+                <ScalarProperty Name="Zalo_Url" ColumnName="Zalo_Url" />
+                <ScalarProperty Name="Logo_Url" ColumnName="Logo_Url" />
+                <ScalarProperty Name="Youtube_Url" ColumnName="Youtube_Url" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsArticles">
+            <EntityTypeMapping TypeName="hkv00123_BeautySalonModel.NewsArticle">
+              <MappingFragment StoreEntitySet="NewsArticles">
+                <ScalarProperty Name="Image4_4_Mobile_Url" ColumnName="Image4_4_Mobile_Url" />
+                <ScalarProperty Name="Image4_3_Mobile_Url" ColumnName="Image4_3_Mobile_Url" />
+                <ScalarProperty Name="Image4_2_Mobile_Url" ColumnName="Image4_2_Mobile_Url" />
+                <ScalarProperty Name="Image4_1_Mobile_Url" ColumnName="Image4_1_Mobile_Url" />
+                <ScalarProperty Name="Image3_Mobile_Url" ColumnName="Image3_Mobile_Url" />
+                <ScalarProperty Name="Image2_Mobile_Url" ColumnName="Image2_Mobile_Url" />
+                <ScalarProperty Name="Image1_Mobile_Url" ColumnName="Image1_Mobile_Url" />
+                <ScalarProperty Name="Image4_4_Url" ColumnName="Image4_4_Url" />
+                <ScalarProperty Name="Image4_3_Url" ColumnName="Image4_3_Url" />
+                <ScalarProperty Name="Image4_2_Url" ColumnName="Image4_2_Url" />
+                <ScalarProperty Name="Image4_1_Url" ColumnName="Image4_1_Url" />
+                <ScalarProperty Name="Content4" ColumnName="Content4" />
+                <ScalarProperty Name="Image3_Url" ColumnName="Image3_Url" />
+                <ScalarProperty Name="Content3" ColumnName="Content3" />
+                <ScalarProperty Name="Image2_Url" ColumnName="Image2_Url" />
+                <ScalarProperty Name="Content2" ColumnName="Content2" />
+                <ScalarProperty Name="Image1_Url" ColumnName="Image1_Url" />
+                <ScalarProperty Name="Content1" ColumnName="Content1" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsInfoRefers">
+            <EntityTypeMapping TypeName="hkv00123_BeautySalonModel.NewsInfoRefer">
+              <MappingFragment StoreEntitySet="NewsInfoRefer">
+                <ScalarProperty Name="Index" ColumnName="Index" />
+                <ScalarProperty Name="LogoUrl" ColumnName="LogoUrl" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="News_ID" ColumnName="News_ID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsServiceRefers">
+            <EntityTypeMapping TypeName="hkv00123_BeautySalonModel.NewsServiceRefer">
+              <MappingFragment StoreEntitySet="NewsServiceRefer">
+                <ScalarProperty Name="Index" ColumnName="Index" />
+                <ScalarProperty Name="LogoUrl" ColumnName="LogoUrl" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="News_ID" ColumnName="News_ID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

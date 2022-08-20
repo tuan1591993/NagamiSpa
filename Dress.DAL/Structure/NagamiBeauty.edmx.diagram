@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e82942a71129495c88ae5e48e5131a62" Name="Diagram1">
+        <EntityTypeShape EntityType="hkv00123_BeautySalonModel.Attachment" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hkv00123_BeautySalonModel.CustomerResult" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hkv00123_BeautySalonModel.Feedback" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hkv00123_BeautySalonModel.GroupPost" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="hkv00123_BeautySalonModel.HighlightService" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hkv00123_BeautySalonModel.InformationReference" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hkv00123_BeautySalonModel.Post" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="hkv00123_BeautySalonModel.ProcessSurgery" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hkv00123_BeautySalonModel.ServiceDetail" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hkv00123_BeautySalonModel.ServiceReference" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hkv00123_BeautySalonModel.sysdiagram" Width="1.5" PointX="8.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hkv00123_BeautySalonModel.User" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="hkv00123_BeautySalonModel.FK_Post_GroupPost" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="hkv00123_BeautySalonModel.Banner" Width="1.5" PointX="5.375" PointY="9.75" />
+        <EntityTypeShape EntityType="hkv00123_BeautySalonModel.Navigation" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="hkv00123_BeautySalonModel.ImageHome" Width="1.5" PointX="11.375" PointY="3.75" />
+        <EntityTypeShape EntityType="hkv00123_BeautySalonModel.Salon" Width="1.5" PointX="11.375" PointY="6.75" />
+        <EntityTypeShape EntityType="hkv00123_BeautySalonModel.NewsArticle" Width="1.5" PointX="11.375" PointY="11.75" />
+        <EntityTypeShape EntityType="hkv00123_BeautySalonModel.NewsInfoRefer" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="hkv00123_BeautySalonModel.NewsServiceRefer" Width="1.5" PointX="3.375" PointY="12.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

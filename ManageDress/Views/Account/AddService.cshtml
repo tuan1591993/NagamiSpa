@@ -1,0 +1,207 @@
+﻿@model Dress_BLL.Model.ServiceDetailsModel
+@{
+    ViewBag.Title = "ManageUser";
+    Layout = "~/Views/Account/Admin.cshtml";
+    ViewData["Title"] = "Administration Console";
+    ViewBag.Home = "active";
+}
+
+<script>
+    $(document).ready(function () {
+        $("#btnSave").click(function () {
+            var model = {
+                'Code': $("#txtCode").val(),
+                'Title': $("#txtName").val(),
+                'Title1': $("#txttitle1").val(),
+                'Content1': $("#txtContent1").val(),
+                'Title2': $("#txttitle2").val(),
+                'Content2': $("#txtContent2").val(),
+                'Title3': $("#txttitle3").val(),
+                'Title4': $("#txttitle4").val(),
+                'Title5': $("#txttitle5").val(),
+                'Title6': $("#txttitle6").val(),
+                'Title7': $("#txttitle7").val(),
+                'SearchKey': $("#txtSearch").val(),
+                'NumberOfObjects': $("#txtObject").val(),
+                'ServiceReferences':
+                    [
+                        {
+                            Id: $("#serviceHidden_1").val(),
+                            Title: $("#txtServiceReferenceTitle_1").val(),
+                            Url: $("#txtServiceReferenceUrl_1").val()
+                        },
+                        {
+                            Id: $("#serviceHidden_2").val(),
+                            Title: $("#txtServiceReferenceTitle_2").val(),
+                            Url: $("#txtServiceReferenceUrl_2").val()
+                        },
+                        {
+                            Id: $("#serviceHidden_3").val(),
+                            Title: $("#txtServiceReferenceTitle_3").val(),
+                            Url: $("#txtServiceReferenceUrl_3").val()
+                        }
+                    ],
+                'InformationReferences': [
+                    {
+                        Id: $("#inforHidden_1").val(),
+                        Title: $("#txtInformationReferenceTitle_1").val(),
+                        Url: $("#txtServiceReferenceUrl_1").val()
+                    },
+                    {
+                        Id: $("#inforHidden_2").val(),
+                        Title: $("#txtInformationReferenceTitle_2").val(),
+                        Url: $("#txtInformationReferenceUrl_2").val()
+                    },
+                    {
+                        Id: $("#inforHidden_3").val(),
+                        Title: $("#txtInformationReferenceTitle_3").val(),
+                        Url: $("#txtInformationReferenceUrl_3").val()
+                    }
+                ]
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("UpdateService")",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(model),
+                    success: function (data) {
+                        if (data.Response == "Success") {
+                            alert("Thêm mới dịch vụ thành công.");
+                            location.href = '/Account/ManageService';
+                        }
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
+                });
+        });
+    });
+</script>
+
+<div class="edit-content">
+    <div class="card">
+        <div class="card-header bg-primary text-white">Thêm mới trang dịch vụ</div>
+        <div class="card-body">
+            <div class="col col-md-6">
+                <div class="form-group">
+                    <label for="email">Mã dịch vụ<span class="red-text"> *</span></label>
+                    <input type="text" class="form-control" id="txtCode" placeholder="Nhập mã dịch vụ">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Tên dịch vụ<span class="red-text"> *</span></label>
+                    <input type="text" class="form-control" id="txtName" placeholder="Nhập tên dịch vụ">
+                </div>
+                <div class="form-group">
+                    <label for="email">Nội dung 1</label>
+                    <textarea rows="10" class="form-control" id="txtContent1" placeholder="Nhập nội dung 1"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Nội dung 2</label>
+                    <textarea rows="10" class="form-control" id="txtContent2" placeholder="Nhập nội dung 2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Từ khóa tìm kiếm</label>
+                    <textarea type="text" rows="5" class="form-control" id="txtSearch" placeholder="Nhập từ khóa tìm kiếm"></textarea>
+                </div>
+            </div>
+            <div class="col col-md-6">
+                <div class="form-group">
+                    <label for="email">Tiêu đề 1</label>
+                    <input type="text" class="form-control" id="txttitle1" placeholder="Nhập tiêu đề 1">
+                </div>
+                <div class="form-group">
+                    <label for="email">Tiêu đề 2</label>
+                    <input type="text" class="form-control" id="txttitle2" placeholder="Nhập tiêu đề 2">
+                </div>
+                <div class="form-group">
+                    <label for="email">Tiêu đề 3</label>
+                    <input type="text" class="form-control" id="txttitle3" placeholder="Nhập tiêu đề 3">
+                </div>
+                <div class="form-group">
+                    <label for="email">Tiêu đề 4</label>
+                    <input type="text" class="form-control" id="txttitle4" placeholder="Nhập tiêu đề 4">
+                </div>
+                <div class="form-group">
+                    <label for="email">Tiêu đề 5</label>
+                    <input type="text" class="form-control" id="txttitle5" placeholder="Nhập tiêu đề 5">
+                </div>
+                <div class="form-group">
+                    <label for="email">Tiêu đề 6</label>
+                    <input type="text" class="form-control" id="txttitle6" placeholder="Nhập tiêu đề 6">
+                </div>
+                <div class="form-group">
+                    <label for="email">Tiêu đề 7</label>
+                    <input type="text" class="form-control" id="txttitle7" placeholder="Nhập tiêu đề 7">
+                </div>
+                <div class="form-group">
+                    <label for="email">Số lượng ảnh đối tượng:</label>
+                    <input type="text" class="form-control" id="txtObject" placeholder="Nhập số lượng ảnh đối tượng">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card margin-top-30">
+        <div class="card-header bg-primary text-white">Thay đổi dịch vụ đi kèm</div>
+        <div class="card-body">
+
+            @{ int index = 1; int[] a = new int[3]; }
+            @foreach (var item in a)
+            {
+                <div class="row" style="width: 100%;">
+                    <div class="col col-md-12 margin-left-15">Dịch vụ đi kèm @index</div>
+                    <div class="col col-md-12 margin-top-20">
+                        <div class="col col-md-12">
+                            <div class="form-group">
+                                <label for="email">Tiêu đề<span class="red-text"> *</span></label>
+                                <input type="text" class="form-control" id="txtServiceReferenceTitle_@index"  placeholder="Nhập tiêu đề">
+                            </div>
+                        </div>
+                        <div class="col col-md-12">
+                            <div class="form-group">
+                                <label for="email">Đường dẫn</label>
+                                <input type="text" class="form-control" id="txtServiceReferenceUrl_@index" placeholder="Nhập đường dẫn">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                index++;
+            }
+
+        </div>
+    </div>
+
+    <div class="card margin-top-30">
+        <div class="card-header bg-primary text-white">Thay đổi tin tức liên quan</div>
+        <div class="card-body">
+            @{ int index1 = 1; int[] b = new int[3]; } @foreach (var item in b)
+            {
+                <div class="row" style="width: 100%;">
+                    <div class="col col-md-12 margin-left-15">Tin tức đi kèm @index1</div>
+                    <div class="col col-md-12 margin-top-20">
+                        <div class="col col-md-12">
+                            <div class="form-group">
+                                <label for="email">Tiêu đề<span class="red-text"> *</span></label>
+                                <input type="text" class="form-control" id="txtInformationReferenceTitle_@index1" placeholder="Nhập tiêu đề">
+                            </div>
+                        </div>
+                        <div class="col col-md-12">
+                            <div class="form-group">
+                                <label for="email">Đường dẫn</label>
+                                <input type="text" class="form-control" id="txtInformationReferenceUrl_@index1" placeholder="Nhập đường dẫn">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                index1++;
+            }
+        </div>
+    </div>
+
+    <div class="buntton-content">
+        <input id="btnSave" class="btn btn-primary" value="Thêm mới dịch vụ" />
+    </div>
+</div>

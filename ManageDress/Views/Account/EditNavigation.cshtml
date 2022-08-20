@@ -1,0 +1,92 @@
+﻿@model Dress_BLL.Model.NavigationModel
+@{
+    ViewBag.Title = "ManageUser";
+    Layout = "~/Views/Account/Admin.cshtml";
+    ViewData["Title"] = "Administration Console";
+    ViewBag.Home = "active";
+}
+
+<script>
+    $(document).ready(function () {
+
+        $("#btnSave").click(function () {
+            var model = {
+                'Id': @Model.Id,
+                'Title': $("#txtTitle").val(),
+                'Link': $("#txtLink").val(),
+            }
+
+            $.ajax({
+               type: "POST",
+               url: "@Url.Action("UpdateNavigation")",
+               dataType: "json",
+               contentType: "application/json; charset=utf-8",
+               data: JSON.stringify(model),
+               success: function (data) {
+                   if (data.Response == "Success") {
+                       alert("Cập nhật thành công.");
+                   }
+               },
+               failure: function (errMsg) {
+                   alert(errMsg);
+               }
+            });
+        });
+
+        $("#btnDelete").click(function () {
+
+            var model = {
+                'Id': @Model.Id,
+                'Title': $("#txtTitle").val(),
+                'Link': $("#txtLink").val(),
+            }
+
+            $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("DeleteNavigation")",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(model),
+                    success: function (data) {
+                        if (data.Response == "Success") {
+                            alert("Xóa bản ghi thành công.");
+                            location.href = '/Account/ManageNavigation';
+                        }
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
+                });
+
+        });
+    });
+</script>
+
+<div class="edit-content">
+    <div class="card">
+        <div class="card-header bg-primary text-white">Thay đổi đường dẫn trang dịch vụ</div>
+        <div class="card-body">
+            <div class="col col-md-4">
+                <div class="form-group">
+                    <label for="email">Tiêu đề:</label>
+                    <input type="text" class="form-control" id="txtTitle" value="@Model.Title" placeholder="Nhập mã dịch vụ">
+                </div>
+            </div>
+            <div class="col col-md-4">
+                <div class="form-group">
+                    <label for="email">Đường dẫn:</label>
+                    <input type="text" class="form-control" id="txtLink" value="@Model.Link" placeholder="Nhập tiêu đề 1">
+                </div>
+            </div>
+            <div class="col col-md-4">
+                <div class="form-group">
+                    <label for="email">Phân nhóm:</label>
+                    <input type="text" class="form-control" disabled value="@Model.Group" placeholder="Nhập tiêu đề 1">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="buntton-content">
+        <input id="btnSave" class="btn btn-primary" value="Cập nhật" />
+        <input style="margin-left: 20px" id="btnDelete" class="btn btn-primary" value="Xóa" />
+    </div>
+</div>

@@ -1,0 +1,54 @@
+﻿.table-hover {
+    margin-top: 30px;
+}
+
+.table th, .jsgrid .jsgrid-table th, .table td, .jsgrid .jsgrid-table td {
+    white-space: normal !important;
+}
+.card-body {
+    display: flex;
+}
+.btn-save {
+    width: 160px;
+    margin-top: 20px;
+}
+.margin-left-15 {
+    margin-left: 15px !important;
+}
+.margin-top-20 {
+    margin-top: 20px;
+}
+.margin-top-30 {
+    margin-top: 30px;
+}
+.buntton-content {
+    display: flex;
+    margin-top: 30px;
+    justify-content: center
+}
+.row-upload {
+    width: 100%;
+    display: flex;
+    margin-top: 30px;
+}
+.photo-view {
+    margin-top: 20px;
+    width: 250px;
+    height: 130px;
+}
+select.form-control {
+    color: #000000 !important;
+}
+.pull-left {
+    float: left;
+}
+.form-search {
+    width: 100%;
+    display: flex;
+    margin-top: 30px;
+    padding: 15px 0px;
+    border: 1px solid gray;
+}
+.red-text {
+    color: red;
+}

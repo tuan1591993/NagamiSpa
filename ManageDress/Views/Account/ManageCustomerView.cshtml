@@ -1,0 +1,152 @@
+﻿@model IEnumerable<Dress_BLL.Model.CustomerResultModel>
+@{
+    ViewBag.Title = "ManageUser";
+    Layout = "~/Views/Account/Admin.cshtml";
+    ViewData["Title"] = "Administration Console";
+    ViewBag.Home = "active";
+
+    var role = Session["Role"];
+}
+
+<script>
+    function ChangeImage(uploadId, photoId, Id, Type) {
+        var data = new FormData();
+        var files = $("#" + uploadId).get(0).files;
+        if (files.length > 0) {
+            data.append("HelpSectionImages", files[0]);
+            data.append("Id", Id);
+            data.append("Type", Type);
+        }
+        $.ajax({
+            url: "@Url.Action("UploadImageCustomer")",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: data,
+            success: function (response) {
+                $("#" + photoId).attr("src", response.ImagePath);
+            },
+            error: function (er) {
+                alert(er);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $("#btnSave").click(function () {
+            var model = [];
+
+            for (let index = 1; index <= @Model.Count(); index++) {
+
+                var object = {
+                    Id: $("#hidden_" + index).val(),
+                    VideoUrl: $("#youtube_" + index).val()
+                };
+                model.push(object)
+            }
+
+            $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("UpdateLinkCustomerView")",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(model),
+                    success: function (data) {
+                        if (data.Response == "Success") {
+                            alert("Cập nhật thành công.");
+                        }
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
+                });
+        });
+    });
+</script>
+
+<div class="row">
+    <h2>Thay đổi hình ảnh thực tế khách hàng</h2>
+</div>
+
+<div class="card margin-top-30">
+    <div class="card-header bg-primary text-white">Thay đổi hình ảnh thực tế khách hàng</div>
+    <div class="card-body" style="display: block">
+        @{ int index = 1; }
+        @foreach (var item in @Model)
+        {
+            <div class="row" style="width: 100%;">
+                <div class="col col-md-3">
+                    <div class="form-group">
+                        <label for="email">Hình ảnh khách hàng @index:</label>
+                        <div class="imageView">
+                            @if (role.ToString() == "Edit" || role.ToString() == "Manager")
+                            {
+                                <input type="file" id="image1_@index" onchange="ChangeImage('image1_' + @index, 'photo1_' + @index, @item.Id, 'AnhKhachHang')" /><br />
+                            }
+
+                            <img id="photo1_@index" alt="Photo" src='@item.ImageGroupUrl' class="photo-view" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-3">
+                    <div class="form-group">
+                        <label for="email">Hình ảnh youtube: @index:</label>
+                        <div class="imageView">
+                            @if (role.ToString() == "Edit" || role.ToString() == "Manager")
+                            {
+                                <input type="file" id="image2_@index" onchange="ChangeImage('image2_' + @index, 'photo2_' + @index, @item.Id, 'AnhYoutube')" /><br />
+                            }
+
+                            <img id="photo2_@index" alt="Photo" src='@item.ImageAfterUrl' class="photo-view" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-3">
+                    <div class="form-group">
+                        <label for="email">Hình ảnh trước sau @index:</label>
+                        <div class="imageView">
+                            @if (role.ToString() == "Edit" || role.ToString() == "Manager")
+                            {
+                                <input type="file" id="image4_@index" onchange="ChangeImage('image4_' + @index, 'photo4_' + @index, @item.Id, 'AnhTruocSau')" /><br />
+                            }
+
+                            <img id="photo4_@index" alt="Photo" src='@item.ImageBeforeUrl' class="photo-view" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-3">
+                    <div class="form-group">
+                        <label for="email">Hình ảnh trước sau Mobile @index:</label>
+                        <div class="imageView">
+                            @if (role.ToString() == "Edit" || role.ToString() == "Manager")
+                            {
+                                <input type="file" id="image3_@index" onchange="ChangeImage('image3_' + @index, 'photo3_' + @index, @item.Id, 'AnhTruocSauMobile')" /><br />
+                            }
+
+                            <img id="photo3_@index" alt="Photo" src='@item.CustomerName' class="photo-view" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="width: 100%;">
+                <div class="col col-md-4">
+                    <div class="form-group">
+                        <label for="email">Thay đổi đường dẫn Youtube @index:</label>
+                        <div class="imageView">
+                            <input type="hidden" value="@item.Id" id="hidden_@index" />
+                            <input id="youtube_@index" alt="Photo" value="@item.VideoUrl" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            index++;
+        }
+    </div>
+</div>
+
+@if (role.ToString() == "Manager" || role.ToString() == "Edit")
+{
+    <div class="buntton-content">
+        <input id="btnSave" class="btn btn-primary" value="Cập nhật" />
+    </div>
+}

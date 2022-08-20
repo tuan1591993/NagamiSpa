@@ -1,0 +1,1482 @@
+﻿@model Dress_BLL.Model.LandingPageModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Viện Thẩm Mỹ Nagami</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="rating" content="general">
+    <meta name="author" content="Thẩm mỹ viện Nagami">
+    <meta name="copyright" content="vtcmobile">
+    <meta name="expires" content="never">
+    <meta name="distribution" content="global">
+    <meta name="RESOURCE-TYPE" content="DOCUMENT">
+    <meta name="GENERATOR" content="VTC Plus">
+    <meta name="googlebot" content="INDEX,FOLLOW,ARCHIVE">
+    <meta name="robots" content="INDEX,FOLLOW,ARCHIVE">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="width" name="MobileOptimized">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="name" content="content" charset="utf-8">
+    <meta name="language" content="vi-vn">
+    <meta http-equiv="content-language" content="vi">
+    <meta content="Thẩm mỹ viện số 1 việt nam" name="description">
+    <meta content="Viện Thẩm Mỹ Nagami" name="keywords">
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/lightslider.css" rel="stylesheet">
+    <link href="~/Content/aos.css" rel="stylesheet">
+    <link href="~/Content/custom.css" rel="stylesheet">
+    <link href="~/Content/responsive.css" rel="stylesheet">
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/sweetalert.css" rel="stylesheet">
+    <link href="~/Content/YouTubePopUp.css" rel="stylesheet">
+    <link href="~/Content/progress.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Oswald:400&amp;display=swap" rel="stylesheet">
+    <link rel="icon" href="../Images/quytrinh_logo_120x115.png">
+
+    <script type="text/javascript" src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="//cdn.jsdelivr.net/velocity/1.1.0/velocity.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/popper.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lightslider.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/aos.js"></script>
+    <script type="text/javascript" src="~/Scripts/custom.js"></script>
+    <script type="text/javascript" src="~/Scripts/common.js"></script>
+    <script type="text/javascript" src="~/Scripts/sweetalert.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/site.js"></script>
+    <script type="text/javascript" src="~/Scripts/YouTubePopUp.jquery.js"></script>
+    <script type="text/javascript" src="~/Scripts/velocity.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/velocity.ui.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".search_box").keyup(function (e) {
+                if (e.keyCode == 13) {
+                    var txtText = $(this).find('.txtSeach').val();
+                    if (txtText.length == 0) {
+                        swal("", "Bạn cần nhập text để tìm kiếm");
+                    } else {
+                        location.href = '/Home/Search?Key=' + $("#search-value").val();
+                    }
+                }
+            });
+
+            $("#search").click(function () {
+                location.href = '/Home/Search?Key=' + $("#search-value").val();
+            });
+            function showStartPage() {
+                $("#popup").hide().fadeIn(1000);
+            }
+
+            $("#popup").hide();
+
+            if (typeof sessionStorage !== 'undefined' &&sessionStorage.getItem("count") == "1") {
+                $("#popup").hide();
+                $("html").css("overflow-y", "auto");
+            }
+            else {
+                setTimeout(showStartPage, 1000);
+
+                //close the POPUP if the button with id="close" is clicked
+                $("#popup").on("click", function (e) {
+                    e.preventDefault();
+                    $("#popup").fadeOut(1000);
+                    $("html").css("overflow-y", "auto");
+                    sessionStorage.setItem("count", "1");
+                });
+            }
+
+            $('.img-product').hover(function () {
+                if ($(this).children().hasClass("show")) {
+                    $(this).children("h2").removeClass("show");
+                    $(this).children("h2").addClass("hide");
+                    $(this).children("h2").hide();
+                    $(this).children("img").css("border", "none");
+                }
+                else {
+                    $(this).children("h2").removeClass("hide");
+                    $(this).children("h2").addClass("show");
+                    $(this).children("h2").show();
+                    $(this).children("img").css("border", "4px solid #844400");
+                }
+            });
+
+            function hex_initial_animation() {
+                $(".hex-wrap,.hover-notify").velocity("transition.expandIn", { stagger: 150 });
+                $(".hex-wrap").velocity("callout.pulse");
+                $(".hoverblock").velocity("fadeOut", { delay: 3000, duration: 0 });
+            }
+
+            hex_initial_animation();
+
+            setTimeout(function () {
+                $('.@Model.ProcessSurgerys.Find(m => m.Index == 2).Key').addClass('desc-active');
+                $('.code-descriptopn > div, .desc-active').children().velocity('stop', true).velocity("transition.slideRightBigIn", { stagger: 300 });
+
+            }, 0);
+
+            var hoverdetect = setInterval(function () { hovernotify() }, 3000);
+            function hovernotify() {
+                $(".hover-notify").velocity("callout.tada");
+            }
+
+            function myStopFunction() {
+                $(".hover-notify").velocity('stop', true).velocity("fadeOut");
+                clearInterval(hoverdetect);
+            }
+
+            $(".hex-init").mouseenter(function () {
+
+                myStopFunction();
+
+                var title_color = $(this).parent().attr("data-color");
+                var title_name = $(this).parent().attr("data-title");
+                var desc_name = $(this).parent().attr("data-content");
+
+                function hex_description() {
+                    $('.code-description').velocity('stop', true).velocity("transition.slideRightBigIn");
+                    $('.' + desc_name).siblings().removeClass('desc-active');
+                    setTimeout(function () {
+                        $('.' + desc_name).addClass('desc-active');
+                        $('.code-descriptopn > div, .desc-active').children().velocity('stop', true).velocity("transition.slideRightBigIn", { stagger: 300 });
+                        $('.code-title, .desc-active span').velocity({ color: title_color }, { queue: false });
+                        $('.code-title').text(title_name)
+                    }, 0);
+                }
+                hex_description();
+
+                $(this).parent().addClass('hexactive');
+                $('.hexactive').velocity({ scaleX: "1.1", scaleY: "1.1" }, { duration: 200 });
+
+            }).mouseleave(function () {
+                $('.hexactive').velocity('stop', true).velocity('reverse').removeClass('hexactive');
+            });
+
+            $('.videoxy').YouTubePopUp();
+
+            $('#btnSendContact').click(function () {
+                AddFeedback('txtEmail', 'txtName', 'txtPhone', 'txtNote');
+            });
+
+            $('#submitFeedback').click(function () {
+                if ($('#txtEmailAddress').val() != "" && $('#txtFullName').val() != "" && $('#txtPhoneNumber').val() != "") {
+                    AddFeedback('txtEmailAddress', 'txtFullName', 'txtPhoneNumber', 'txtContent');
+                }
+                else {
+                    alert("Bạn cần nhập đầy đủ thông tin yêu cầu tư vấn !!");
+                }
+            });
+
+            function AddFeedback(email, name, phone, note) {
+                var model = {
+                    'Email': $('#' + email).val(),
+                    'Name': $('#' + name).val(),
+                    'Phone': $('#' + phone).val(),
+                    'Note': $('#' + note).val()
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("AddFeedback")",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(model),
+                    success: function (data) {
+                        if (data.Response == "Success") {
+                            $('#' + email).val("");
+                            $('#' + name).val("");
+                            $('#' + phone).val("");
+                            $('#' + note).val("");
+                            $("html").scrollTop(0);
+                            alert("Gửi yêu cầu thành công.");
+                        }
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
+                });
+            }
+        });
+    </script>
+</head>
+<body class="scroll" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0" style="overflow-y:auto;">
+
+
+    <div id="popup" style="display: none;">
+
+        <picture>
+            <source media="(max-width: 769px)" srcset="~/Images/Mobile/popup_initial_mobile.png" class="mw-100">
+            <img src="~/Images/initial-web.png" />
+        </picture>
+        <!-- and here comes the image -->
+
+    </div>
+
+    <header>
+        <div class="container" style="padding:10px">
+            <div class="row justify-content-between">
+                <div class="sologan col-md-7">
+                    <h4>@Model.ShopInformation.Title</h4>
+                </div>
+                <div class="search col-md-5">
+                    <ul class="social">
+                        <li><a href="@Model.ShopInformation.Facebook_Url" target="_blank"><img src="~/Images/facebook_icon.png" alt="" width="30" /></a></li>
+                        <li><a href="@Model.ShopInformation.Zalo_Url" target="_blank"><img src="~/Images/youtube_icon.png" alt="" width="30" /></a></li>
+                        <li><a href="@Model.ShopInformation.TickToc_Url" class="youtube" target="_blank"><img src="~/Images/tiktok_icon.png" alt="" width="30" /></a></li>
+                        <li><a href="@Model.ShopInformation.Instagram_Url" target="_blank"><img src="~/Images/instagram_icon.png" alt="" width="30" /></a></li>
+                        <li>
+                            <input id="search-value" type="text" placeholder="Search...." class="top-search" /><i class="fa fa-search" id="search" style=" margin-left: -20px; color: #844400;" aria-hidden="true"></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!------------------- TOP SEARCH & SOCIAL ------------------->
+    <!------------------- NAVIGATOR ------------------->
+    <section class="sec-nav affix">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="nav-mobile d-md-none">
+                    <button class="navbar-toggler icon-menu" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <a class="navbar-brand" href="javascript:;"><span class="lg-bn"></span></a>
+                    <div class="search-mobile dropdown">
+                        <a class="dropdown-toggle" href="javascript:;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../Images/Mobile/search_mobile.png" alt="" class="mw-100"></a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <form class="search_box">
+                                <input type="search" class="form-control txtSeach" placeholder="Nội dung tìm kiếm..." autofocus="">
+                            </form>
+                        </div>
+                    </div>
+                </div> <!------------------- HEADER MOBILE ------------------->
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                    <div class="logo-menu-mobile">
+                        <a href="@Url.Action("Index")"><img src="../Images/Mobile/menu_logo_mobile.png" /></a>
+                    </div>
+                    <ul class="navbar-nav navbar-left col-md-5 px-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Giới thiệu</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <div class="submenu-item">
+                                    <div class="media">
+                                        <div class="media-photo-tm"><img src="../Images/menu-icon.png" alt="" class="mw-100"></div>
+                                        <div class="media-body pl-md-4 align-self-center">
+                                            <h4>Giới thiệu</h4>
+                                            <div class="sub-menu-display">
+                                                <div class="margin-left-30 min-width-250">
+                                                    <h6 class="title-service">Giới thiệu Nagami</h6>
+                                                    <ul>
+                                                        <li><a href="/Home/Service?Type=GT-CSVC" class="submenu-link">Cơ sở vật chất</a></li>
+                                                        <li><a href="/Home/Service?Type=GT-DNBS" class="submenu-link">Đội ngũ bác sĩ</a></li>
+                                                        <li><a href="/Home/Service?Type=GT-CNTM" class="submenu-link">Công nghệ thẩm mỹ</a></li>
+                                                        <li><a href="/Home/Service?Type=GT-CSBH" class="submenu-link">Chính sách bảo hành</a></li>
+                                                        <li><a href="/Home/Service?Type=GT-LH" class="submenu-link">Liên hệ</a></li>
+                                                    </ul>
+                                                </div>
+
+                                                <div class="margin-left-30 min-width-250">
+                                                    <h6 class="title-service">Khuyến mãi</h6>
+                                                    <ul>
+                                                        <li><a href="/Home/Service?Type=GT-KM" class="submenu-link">Khuyễn mãi</a></li>
+                                                        <li><a href="/Home/Service?Type=GT-BGDVTP" class="submenu-link">Bảng giá dịch vụ tiểu phẫu</a></li>
+                                                        <li><a href="/Home/Service?Type=GT-BGDVDP" class="submenu-link">Bảng giá dịch vụ đại phẫu</a></li>
+                                                        <li><a href="/Home/Service?Type=GT-BGDVPT" class="submenu-link">Bảng giá dịch vụ phun thêu</a></li>
+                                                        <li><a href="/Home/Service?Type=GT-BGDVTL" class="submenu-link">Bảng giá dịch vụ triệt lông</a></li>
+                                                        <li><a href="/Home/Service?Type=GT-BGDVCSD" class="submenu-link">Bảng giá dịch vụ chăm sóc da</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Thẩm mỹ khuôn mặt</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <div class="submenu-item">
+                                    <div class="media">
+                                        <div class="media-photo-tm"><img src="../Images/menu-icon.png" alt="" class="mw-100"></div>
+                                        <div class="media-body pl-md-4 align-self-center">
+                                            <h4>Thẩm mĩ khuôn mặt</h4>
+                                            <div class="sub-menu-display">
+                                                <div class="margin-left-30">
+                                                    <h6 class="title-service">Thẩm mỹ mắt</h6>
+                                                    <ul>
+                                                        <li><a href="/Home/Service?Type=TMM-CM" class="submenu-link">Cắt mí</a></li>
+                                                        <li><a href="/Home/Service?Type=TMM-CMM2" class="submenu-link">Cắt mí Miline 2C</a></li>
+                                                        <li><a href="/Home/Service?Type=TMM-CMMD" class="submenu-link">Cắt mí mini deep</a></li>
+                                                        <li><a href="/Home/Service?Type=TMM-CMD" class="submenu-link">Cắt mí Deepline</a></li>
+                                                        <li><a href="/Home/Service?Type=TMM-NMi" class="submenu-link">Nhấn mí</a></li>
+                                                        <li><a href="/Home/Service?Type=TMM-MGMT" class="submenu-link">Mở góc mắt trong</a></li>
+                                                        <li><a href="/Home/Service?Type=TMM-MGMN" class="submenu-link">Mở góc mắt ngoài</a></li>
+                                                        <li><a href="/Home/Service?Type=TMM-TCM" class="submenu-link">Treo cung mày</a></li>
+                                                        <li><a href="/Home/Service?Type=TMM-LMBM" class="submenu-link">Lấy mỡ bọng mắt</a></li>
+                                                        <li><a href="/Home/Service?Type=TMM-LMMM" class="submenu-link">Lấy mỡ mí mắt</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="margin-left-30">
+                                                    <h6 class="title-service">Thẩm mỹ mũi</h6>
+                                                    <ul>
+                                                        <li><a href="/Home/Service?Type=TMM-NMui" class="submenu-link1">Nâng mũi</a></li>
+                                                        <li><a href="/Home/Service?Type=TMM-NMBS" class="submenu-link1">Nâng mũi bọc sụn</a></li>
+                                                        <li><a href="/Home/Service?Type=TMM-NMHQ" class="submenu-link1">Nâng mũi Hàn Quốc</a></li>
+                                                        <li><a href="/Home/Service?Type=TMM-NMS" class="submenu-link1">Nâng mũi Sline</a></li>
+                                                        <li><a href="/Home/Service?Type=TMM-NMM3" class="submenu-link1">Nâng mũi Mega 3S</a></li>
+                                                        <li><a href="/Home/Service?Type=TMM-NMBCTM5" class="submenu-link1">Nâng mũi bán cấu trúc Mega 5S</a></li>
+                                                        <li><a href="/Home/Service?Type=TMM-NMCTM8" class="submenu-link1">Nâng mũi cấu trúc Mega 8S</a></li>
+                                                        <li><a href="/Home/Service?Type=TMM-NMCTS8" class="submenu-link1">Nâng mũi cấu trúc Surgiform 8D</a></li>
+                                                        <li><a href="/Home/Service?Type=TMM-NMCTSS" class="submenu-link1">Nâng mũi cấu trúc sụn sườn</a></li>
+                                                        <li><a href="/Home/Service?Type=TMM-NMN" class="submenu-link1">Nâng mũi nam</a></li>
+                                                        <li><a href="/Home/Service?Type=TMM-SMH" class="submenu-link1">Sửa mũi hỏng</a></li>
+                                                        <li><a href="/Home/Service?Type=TMM-CCM" class="submenu-link1">Cắt cánh mũi</a></li>
+                                                        <li><a href="/Home/Service?Type=TMM-MGM" class="submenu-link1">Mài gồ mũi</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="margin-left-30">
+                                                    <h6 class="title-service">Thẩm mỹ cằm</h6>
+                                                    <ul>
+                                                        <li><a href="/Home/Service?Type=TMC-DC" class="submenu-link">Độn cằm</a></li>
+                                                        <li><a href="/Home/Service?Type=TMC-DCHQ" class="submenu-link">Độn cằm Hàn Quốc</a></li>
+                                                        <li><a href="/Home/Service?Type=TMC-DCV" class="submenu-link">Độn cằm Vline</a></li>
+                                                        <li><a href="/Home/Service?Type=TMC-SCH" class="submenu-link">Sửa cằm hỏng</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="margin-left-30">
+                                                    <h6 class="title-service">Thẩm mỹ cấy mỡ</h6>
+                                                    <ul>
+                                                        <li><a href="/Home/Service?Type=TMCM-DTD" class="submenu-link">Độn thái dương</a></li>
+                                                        <li><a href="/Home/Service?Type=TMCM-DRC" class="submenu-link">Độn rãnh cười</a></li>
+                                                        <li><a href="/Home/Service?Type=TMCM-CM" class="submenu-link">Cấy mỡ</a></li>
+                                                        <li><a href="/Home/Service?Type=TMCM-CMN" class="submenu-link">Cấy mỡ ngực</a></li>
+                                                        <li><a href="/Home/Service?Type=TMCM-CMMong" class="submenu-link">Cấy mỡ mông</a></li>
+                                                        <li><a href="/Home/Service?Type=TMCM-CMTM" class="submenu-link">Cấy mỡ toàn mặt</a></li>
+                                                        <li><a href="/Home/Service?Type=TMCM-CMTD" class="submenu-link">Cấy mỡ thái dương</a></li>
+                                                        <li><a href="/Home/Service?Type=TMCM-CMMa" class="submenu-link">Cấy mỡ má</a></li>
+                                                        <li><a href="/Home/Service?Type=TMCM-CMRC" class="submenu-link">Cấy mỡ rãnh cười</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Thẩm mỹ vóc dáng</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <div class="submenu-item">
+                                    <div class="media">
+                                        <div class="media-photo-tm"><img src="../Images/menu-icon.png" alt="" class="mw-100"></div>
+                                        <div class="media-body pl-md-4">
+                                            <h4>Thẩm mỹ vóc dáng</h4>
+                                            <div class="sub-menu-display">
+                                                <div class="margin-left-30">
+                                                    <h6 class="title-service">Thẩm mỹ vòng 1</h6>
+                                                    <ul>
+                                                        <li><a href="/Home/Service?Type=TMV1-NNDT" class="submenu-link">Nâng ngực đặt túi</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV1-NNDTM" class="submenu-link">Nâng ngực đặt túi Mentor</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV1-NNDTMV" class="submenu-link">Nâng ngực đặt túi Mentor VIP</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV1-NNDTS" class="submenu-link">Nâng ngực đặt túi Sebbin</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV1-NNDTSSVN" class="submenu-link">Nâng ngực đặt túi Sebbin siêu vi nhám</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV1-NNDTE" class="submenu-link">Nâng ngực đặt túi Ergonomix</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV1-NNDTMN" class="submenu-link">Nâng ngực đặt túi Motiva Nanochip</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV1-NNDTMKC" class="submenu-link">Nâng ngực đặt túi Motiva không chip</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV1-NNNS" class="submenu-link">Nâng ngực nội soi</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV1-NNCS" class="submenu-link">Nâng ngực chảy sệ</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV1-TGNPD" class="submenu-link">Thu gọn ngực phì đại</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV1-TNDT" class="submenu-link">Thu nhỏ đầu ti</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV1-TNQV" class="submenu-link">Thu nhỏ quầng vú</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV1-KNVT" class="submenu-link">Kéo núm vú tụt</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="margin-left-30">
+                                                    <h6 class="title-service">Thẩm mỹ vòng 2</h6>
+                                                    <ul>
+                                                        <li><a href="/Home/Service?Type=TMV2-THTDB" class="submenu-link">Tạo hình thành bụng</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV2-THTBCR" class="submenu-link">Tạo hình thành bụng chuyển rốn</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV2-THTBM" class="submenu-link">Tạo hình thành bụng mini</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV2-HM" class="submenu-link">Hút mỡ</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV2-HMB" class="submenu-link">Hút mỡ bụng</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV2-HML" class="submenu-link">Hút mỡ lưng</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV2-HMD" class="submenu-link">Hút mỡ đùi</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV2-HME" class="submenu-link">Hút mỡ eo</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV2-HMCT" class="submenu-link">Hút mỡ cánh tay</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="margin-left-30">
+                                                    <h6 class="title-service">Thẩm mỹ vòng 3</h6>
+                                                    <ul>
+                                                        <li><a href="/Home/Service?Type=TMV3-NM" class="submenu-link">Nâng mông</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV3-NMDTP" class="submenu-link">Nâng mông đặt túi Polytech</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV3-NMDTM" class="submenu-link">Nâng mông đặt túi Motiva</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV3-TMTSM" class="submenu-link">Thẩm mỹ tầng sinh môn</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV3-CMB" class="submenu-link">Căt môi bé</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV3-CML" class="submenu-link">Cắt môi lớn</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV3-CVLH" class="submenu-link">Chuyển vạt làm hồng</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV3-THBP" class="submenu-link">Thu hẹp bán phần</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV3-THTP" class="submenu-link">Thu hẹp toàn phần</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV3-NSTTSM" class="submenu-link">Nâng sa trễ tầng sinh môn</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV3-SSTSM" class="submenu-link">Sửa sẹo tầng sinh môn</a></li>
+                                                        <li><a href="/Home/Service?Type=TMV3-CM" class="submenu-link">Chỉnh mũi</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Phun săm thẩm mỹ</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <div class="submenu-item">
+                                    <div class="media">
+                                        <div class="media-photo-tm"><img src="../Images/menu-icon.png" alt="" class="mw-100"></div>
+                                        <div class="media-body pl-md-4">
+                                            <h4>Thẩm mỹ vóc dáng</h4>
+                                            <div class="sub-menu-display">
+                                                <div class="margin-left-30 min-width-200">
+                                                    <h6 class="title-service">Phun thêu mày</h6>
+                                                    <ul>
+                                                        <li><a href="/Home/Service?Type=PTM-HLM" class="submenu-link">Hairstroke lông mày</a></li>
+                                                        <li><a href="/Home/Service?Type=PTM-DKP" class="submenu-link">Điêu khách Phibrow</a></li>
+                                                        <li><a href="/Home/Service?Type=PTM-DKM8" class="submenu-link">Điêu khắc mày 8D</a></li>
+                                                        <li><a href="/Home/Service?Type=PTM-PMVC" class="submenu-link">Phun mày vi chạm</a></li>
+                                                        <li><a href="/Home/Service?Type=PTM-PMO" class="submenu-link">Phun mày Ombre</a></li>
+                                                        <li><a href="/Home/Service?Type=PTM-SMH" class="submenu-link">Sửa mày hỏng</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="margin-left-30 min-width-200">
+                                                    <h6 class="title-service">phun thêu môi</h6>
+                                                    <ul>
+                                                        <li><a href="/Home/Service?Type=PTM-CMMTBG" class="submenu-link">Cấy mầu môi tế bào gốc</a></li>
+                                                        <li><a href="/Home/Service?Type=PTM-CMMT" class="submenu-link">Cấy màu môi tươi</a></li>
+                                                        <li><a href="/Home/Service?Type=PTM-PMPBC" class="submenu-link">Phun môi phủ bóng Collagen</a></li>
+                                                        <li><a href="/Home/Service?Type=PTM-KMT" class="submenu-link">Khử thâm môi</a></li>
+                                                        <li><a href="/Home/Service?Type=PTM-CSMDL" class="submenu-link">Chỉnh sửa môi đã làm</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="margin-left-30 min-width-200">
+                                                    <h6 class="title-service">Phun thêu khác</h6>
+                                                    <ul>
+                                                        <li><a href="/Home/Service?Type=PTK-PMMT" class="submenu-link">Phun mí mở tròng</a></li>
+                                                        <li><a href="/Home/Service?Type=PTK-LHNH" class="submenu-link">Laser hồng nhũ hoa</a></li>
+                                                        <li><a href="/Home/Service?Type=PTK-LHBK" class="submenu-link">Laser hồng bikini</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <a class="navbar-brand col-md-2 px-0 d-none d-md-block" href="/"><span class="lg-bn"></span></a>
+                    <ul class="navbar-nav navbar-right col-md-5 px-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Điều trị da</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <div class="submenu-item">
+                                    <div class="media">
+                                        <div class="media-photo-tm"><img src="../Images/menu-icon.png" alt="" class="mw-100"></div>
+                                        <div class="media-body pl-md-4">
+                                            <h4>Điều trị da</h4>
+                                            <div class="csd">
+                                                <div class="margin-left-30 min-width-200">
+                                                    <h6 class="title-service">Chăm sóc da</h6>
+                                                    <ul>
+                                                        <li><a href="/Home/Service?Type=DTD-CSDCB" class="submenu-link">Chăm sóc da cơ bản</a></li>
+                                                        <li><a href="/Home/Service?Type=DTD-THDCC" class="submenu-link">Trẻ hóa da cao cấp</a></li>
+                                                        <li><a href="/Home/Service?Type=DTD-DTM" class="submenu-link">Điều trị mụn</a></li>
+                                                        <li><a href="/Home/Service?Type=DTD-DTSRLCLT" class="submenu-link">Điều trị sẹo rỗ, lỗ chân lông to</a></li>
+                                                        <li><a href="/Home/Service?Type=DTD-DTSN" class="submenu-link">Điều trị sạm nám</a></li>
+                                                        <li><a href="/Home/Service?Type=DTD-DTSTD" class="submenu-link">Điều trị sắc tố da</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Thẩm mỹ khác</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <div class="submenu-item">
+                                    <div class="media">
+                                        <div class="media-photo-tm"><img src="../Images/menu-icon.png" alt="" class="mw-100"></div>
+                                        <div class="media-body pl-md-4">
+                                            <h4>Thẩm mỹ khác</h4>
+                                            <div class="csd">
+                                                <div class="margin-left-30 min-width-200">
+                                                    <ul>
+                                                        <li><a href="/Home/Service?Type=TMK-TMM" class="submenu-link">Thu mỏng môi</a></li>
+                                                        <li><a href="/Home/Service?Type=TMK-THMTT" class="submenu-link">Tạo hình môi trái tim</a></li>
+                                                        <li><a href="/Home/Service?Type=TMK-TMLDT" class="submenu-link">Tạo má lúm đồng tiền</a></li>
+                                                        <li><a href="/Home/Service?Type=TMK-HGM" class="submenu-link">Hạ gò má</a></li>
+                                                        <li><a href="/Home/Service?Type=TMK-CHL" class="submenu-link">Cười hở lợi</a></li>
+                                                        <li><a href="/Home/Service?Type=TMK-CSSX" class="submenu-link">Cắt sửa sẹo xấu</a></li>
+                                                        <li><a href="/Home/Service?Type=TMK-CDMTPBC" class="submenu-link">Căng da mặt toàn phần bằng chỉ</a></li>
+                                                        <li><a href="/Home/Service?Type=TMK-CDMBPBC" class="submenu-link">Căng da mặt bán phần bằng chỉ</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tin tức</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <div class="submenu-item">
+                                    <div class="media">
+                                        <div class="media-photo-tm"><img src="../Images/menu-icon.png" alt="" class="mw-100"></div>
+                                        <div class="media-body pl-md-4">
+                                            <h4>Tin tức</h4>
+                                            <div style="display:flex; justify-content: center;">
+                                                <div class="margin-left-30 min-width-200">
+                                                    <ul>
+                                                        <li><a href="/Home/Service?Type=TT-NGOHNDVAT" class="submenu-link">Nâng ngực ở Hà Nội đẹp và an toàn</a></li>
+                                                        <li><a href="/Home/Service?Type=TT-TMODDVCL" class="submenu-link">Thẩm mỹ ở đâu đẹp và chất lượng</a></li>
+                                                        <li><a href="/Home/Service?Type=TT-TSTMVNDLCDNM" class="submenu-link">Tại sao Thẩm mỹ viện Nagami được lựa chọn để nâng mũi?</a></li>
+                                                        <li><a href="/Home/Service?Type=TT-KNTNNN" class="submenu-link">Khi nào thì nên nâng ngực?</a></li>
+                                                        <li><a href="/Home/Service?Type=TT-TMVNNNDNTHN" class="submenu-link">Thẩm mỹ viện nào nâng mũi đẹp nhất tại Hà Nội?</a></li>
+                                                        <li><a href="/Home/Service?Type=TT-HDTCSTMCMDNHN" class="submenu-link">Hướng dẫn tìm cơ sở thẩm mỹ cắt mí đẹp nhất Hà Nội?</a></li>
+                                                        <li><a href="/Home/Service?Type=TT-PTTMTHTBLG" class="submenu-link">Phẫu thuật thẩm mỹ Tạo hình thành bụng là gì?</a></li>
+                                                        <li><a href="/Home/Service?Type=TT-MNTNCM" class="submenu-link">Mùa nào thì nên cắt mí?</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item d-none d-md-inline-block">
+                            <a class="nav-link hotline" style="max-width: 150px; font-weight: bold;" href="tel:@Model.ShopInformation.HotLine"><i class="fa fa-phone"></i>  @Model.ShopInformation.HotLine</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+        </div>
+    </section>
+    <!------------------- END NAVIGATOR ------------------->
+
+    <section class="main-bn">
+        <div class="top-banner">
+            <div class="row justify-content-between">
+                <div class="col-md-12">
+                    <div id="main-banner" class="carousel slide pointer-event" data-ride="carousel" data-interval="3000">
+                        <div class="carousel-inner text-center">
+                            <div class="carousel-item">
+                                <a href="#">
+                                    <img src="../Images/top_banner_1.png" class="banner-desktop mw-100" alt="">
+                                    <img src="../Images/Mobile/banner_mobile.png" class="banner-mobile mw-100" alt="">
+                                </a>
+                            </div>
+                            <div class="carousel-item active">
+                                <a href="#">
+                                    <img src="../Images/top_banner_2.png" class="banner-desktop mw-100" alt="">
+                                    <img src="../Images/Mobile/banner_mobile.png" class="banner-mobile mw-100" alt="">
+                                </a>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="#">
+                                    <img src="../Images/top_banner_1.png" class="banner-desktop mw-100" alt="">
+                                    <img src="../Images/Mobile/banner_mobile.png" class="banner-mobile mw-100" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <ul class="carousel-indicators desktop-indi">
+                            <li data-target="#main-banner" data-slide-to="0" class=""></li>
+                            <li data-target="#main-banner" data-slide-to="1" class="active"></li>
+                            <li data-target="#main-banner" data-slide-to="2" class=""></li>
+                        </ul>
+                        <a class="carousel-control-prev d-none d-md-flex" href="#main-banner" role="button" data-slide="prev">
+                            <img src="../Images/pre-arrow-big.png" alt="">
+                        </a>
+                        <a class="carousel-control-next d-none d-md-flex" href="#main-banner" role="button" data-slide="next">
+                            <img src="../Images/next-arrow-big.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!------------------- END: MAIN BANNER ------------------->
+    <!------------------- SERVICE ------------------->
+    <section class="story" id="story">
+        <div class="service-section">
+            <div class="main-title">
+                <h2>DỊCH VỤ NỔI BẬT</h2>
+            </div>
+            <div class="service-img">
+                <div class="service">
+                    <div class="col-w50">
+                        <div class="col-w100 h-333">
+                            <div class="col-w50 col-h100 img-product">
+
+                                <figure><img class="img-service" src="@Url.Content(@Model.HighLightServices.Find(m => m.Index == 1).ImageUrl)" /></figure>
+
+                                <h2 class="app-img-text height-56 hide">@Model.HighLightServices.Find(m => m.Index == 1).Description</h2>
+                            </div>
+                            <div class="col-w50 col-h100 img-product">
+                                <figure><img class="img-service" src="@Url.Content(@Model.HighLightServices.Find(m => m.Index == 2).ImageUrl)" /></figure>
+
+                                <h2 class="app-img-text height-56 hide">@Model.HighLightServices.Find(m => m.Index == 2).Description</h2>
+                            </div>
+                        </div>
+                        <div class="col-w100 h-666 img-product">
+                            <figure><img class="img-service" src="@Url.Content(@Model.HighLightServices.Find(m => m.Index == 3).ImageUrl)" /></figure>
+
+                            <h2 class="app-img-text height-112 hide">@Model.HighLightServices.Find(m => m.Index == 3).Description</h2>
+                        </div>
+                        <div class="col-w100 h-333">
+                            <div class="col-w50 col-h100 img-product">
+                                <figure><img class="img-service" src="@Url.Content(@Model.HighLightServices.Find(m => m.Index == 4).ImageUrl)" /></figure>
+
+                                <h2 class="app-img-text height-56 hide">@Model.HighLightServices.Find(m => m.Index == 4).Description</h2>
+                            </div>
+                            <div class="col-w50 col-h100 img-product">
+                                <figure><img class="img-service" src="@Url.Content(@Model.HighLightServices.Find(m => m.Index == 5).ImageUrl)" /></figure>
+
+                                <h2 class="app-img-text height-56  hide">@Model.HighLightServices.Find(m => m.Index == 5).Description</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-w50">
+                        <div class="col-w100 h-666 img-product">
+                            <figure><img class="img-service" src="@Url.Content(@Model.HighLightServices.Find(m => m.Index == 6).ImageUrl)" /></figure>
+
+                            <h2 class="app-img-text height-112 hide">@Model.HighLightServices.Find(m => m.Index == 6).Description</h2>
+                        </div>
+                        <div class="col-w100 h-333">
+                            <div class="col-w50 col-h100 img-product">
+                                <figure><img class="img-service" src="@Url.Content(@Model.HighLightServices.Find(m => m.Index == 7).ImageUrl)" /></figure>
+
+                                <h2 class="app-img-text height-56 hide">@Model.HighLightServices.Find(m => m.Index == 7).Description</h2>
+                            </div>
+                            <div class="col-w50 col-h100 img-product">
+                                <figure><img class="img-service" src="@Url.Content(@Model.HighLightServices.Find(m => m.Index == 8).ImageUrl)" /></figure>
+
+                                <h2 class="app-img-text height-56 hide">@Model.HighLightServices.Find(m => m.Index == 8).Description</h2>
+                            </div>
+                        </div>
+                        <div class="col-w100 h-333">
+                            <div class="col-w50 col-h100 img-product">
+                                <figure><img class="img-service" src="@Url.Content(@Model.HighLightServices.Find(m => m.Index == 9)?.ImageUrl)" /></figure>
+
+                                <h2 class="app-img-text height-56 hide">@Model.HighLightServices.Find(m => m.Index == 9).Description</h2>
+                            </div>
+                            <div class="col-w50 col-h100 img-product">
+                                <figure><img class="img-service" src="@Url.Content(@Model.HighLightServices.Find(m => m.Index == 10)?.ImageUrl)" /></figure>
+
+                                <h2 class="app-img-text height-56 hide">@Model.HighLightServices.Find(m => m.Index == 10).Description</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-mobile">
+                    <div class="col-w100">
+                        <img src="../Images/Mobile/dv_nangnguc_mobile.png" />
+                    </div>
+                    <div class="col-w100">
+                        <div class="col-w50">
+                            <img src="../Images/Mobile/dichvu_nangmong_mobile.png" />
+                        </div>
+                        <div class="col-w50">
+                            <img src="../Images/Mobile/dichvu_taohinhthanhbung_mobile.png" />
+                        </div>
+                    </div>
+                    <div class="col-w100">
+                        <img src="../Images/Mobile/dichvu_nangmui_mobile.png" />
+                    </div>
+                    <div class="col-w100">
+                        <div class="col-w50">
+                            <img src="../Images/Mobile/dichvu_doncam_mobile.png" />
+                        </div>
+                        <div class="col-w50">
+                            <img src="../Images/Mobile/dichvu_catmi_mobile.png" />
+                        </div>
+                    </div>
+                    <div class="col-w100">
+                        <div class="col-w50">
+                            <img src="../Images/Mobile/dichvu_donthaiduong_mobile.png" />
+                        </div>
+                        <div class="col-w50">
+                            <img src="../Images/Mobile/dichvu_caymaumoi_mobile.png" />
+                        </div>
+                    </div>
+                    <div class="col-w100">
+                        <div class="col-w50">
+                            <img src="../Images/Mobile/dichvu_dieukhaclongmay_mobile.png" />
+                        </div>
+                        <div class="col-w50">
+                            <img src="../Images/Mobile/dichvu_trietlong_mobile.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!------------------- END: SERVICE ------------------->
+    <!------------------- CUSTOMER ------------------->
+    <section class="services" id="services">
+        <div class="customer-section">
+            <div class="main-title text-center">
+                <h2>HÌNH ẢNH THỰC TẾ KHÁCH HÀNG</h2>
+            </div>
+            <div class="customer-panel">
+                <div class="row width-current">
+                    <div id="customerImage" style="width: 100%" class="carousel slide pointer-event" data-ride="carousel" data-interval="false">
+                        <div class="carousel-inner text-center">
+                            <div class="carousel-item active">
+                                <div class="row">
+                                    @foreach (var item in Model.CustomerResults.Where(m => m.IndexImage > 0 && m.IndexImage <= 6))
+                                    {
+                                        <div class="col-md-4">
+                                            <div class="frame-after">
+                                                <div class="youtube-panel">
+                                                    <a class="figure-bn-group d-block videoxy aos-init aos-animate" href="@item.VideoUrl" data-aos="zoom-in" data-aos-duration="600" data-aos-once="true">
+                                                        <picture>
+                                                            <div class="video-frame">
+                                                                <img src="~/Images/play_youtube.png" />
+                                                            </div>
+                                                        </picture>
+                                                    </a>
+                                                    @*<img class="imgAfterBefore" src="~/Images/youtubePanel.png" />*@
+                                                </div>
+                                                <div class="image-panel" style="background-image: url(@item.ImageGroupUrl);">
+                                                    <div class="service-name">@item.ServiceName</div>
+                                                    <div class="btnViewImage" data-toggle="modal" data-target="#@item.Title">Xem ảnh >></div>
+                                                    <div class="nameCustomer">Bạn @item.CustomerName</div>
+                                                </div>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade modal-vertical-centered" id="@item.Title" role="dialog">
+                                                    <div class="modal-dialog">
+
+                                                        <img class="imgBeforeAfter" src="@item.ImageBeforeUrl" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row">
+                                    @foreach (var item in Model.CustomerResults.Where(m => m.IndexImage > 6 && m.IndexImage <= 12))
+                                    {
+                                        <div class="col-md-4">
+                                            <div class="frame-after">
+                                                <div class="youtube-panel">
+                                                    <a class="figure-bn-group d-block videoxy aos-init aos-animate" href="@item.VideoUrl" data-aos="zoom-in" data-aos-duration="600" data-aos-once="true">
+                                                        <picture>
+                                                            <source media="(min-width: 769px)" srcset="~/Images/youtubePanel.png" class="mw-100">
+                                                            <img class="imgAfterBefore" src="~/Images/youtubePanel.png">
+                                                        </picture>
+                                                    </a>
+                                                </div>
+                                                <div class="image-panel" style="background-image: url(@item.ImageGroupUrl);">
+                                                    <div class="btnViewImage" data-toggle="modal" data-target="#@item.Title">Xem ảnh >></div>
+                                                    <div class="nameCustomer">Bạn @item.CustomerName</div>
+                                                </div>
+                                                <!-- Modal -->
+                                                <div class="modal fade modal-vertical-centered" id="@item.Title" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <img class="imgBeforeAfter" src="@item.ImageBeforeUrl" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row">
+                                    @foreach (var item in Model.CustomerResults.Where(m => m.IndexImage > 12 && m.IndexImage <= 18))
+                                    {
+                                        <div class="col-md-4">
+                                            <div class="frame-after">
+                                                <div class="youtube-panel">
+                                                    <a class="figure-bn-group d-block videoxy aos-init aos-animate" href="@item.VideoUrl" data-aos="zoom-in" data-aos-duration="600" data-aos-once="true">
+                                                        <picture>
+                                                            <source media="(min-width: 769px)" srcset="~/Images/youtubePanel.png" class="mw-100">
+                                                            <img class="imgAfterBefore" src="~/Images/youtubePanel.png">
+                                                        </picture>
+                                                    </a>
+                                                </div>
+                                                <div class="image-panel" style="background-image: url(@item.ImageGroupUrl);">
+                                                    <div class="btnViewImage" data-toggle="modal" data-target="#@item.Title">Xem ảnh >></div>
+                                                    <div class="nameCustomer">Bạn @item.CustomerName</div>
+                                                </div>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade modal-vertical-centered" id="@item.Title" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <img class="imgBeforeAfter" src="@item.ImageBeforeUrl" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div id="customerResult" style="display:flex; justify-content: center; margin-top: 30px;">
+                            <div>
+                                <a href="#customerImage" role="button" data-slide="prev">
+                                    <img src="../Images/pre-arrow.png" alt="">
+                                </a>
+                            </div>
+                            <div>
+                                <ul class="carousel-indicators" style="position: relative;; margin: 0px; margin-top: 13px; ">
+                                    <li data-target="#customerImage" data-slide-to="0" class="active">></li>
+                                    <li data-target="#customerImage" data-slide-to="1" </li>
+                                    <li data-target="#customerImage" data-slide-to="2"></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <a href="#customerImage" role="button" data-slide="next">
+                                    <img src="../Images/next-arrow.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row width-current-mobile">
+                    <div id="customerImageMobile" style="width: 100%" class="carousel slide pointer-event" data-ride="carousel" data-interval="false">
+                        <div class="carousel-inner text-center">
+
+                            @foreach (var item in Model.CustomerResults.Where(m => m.IndexImage <= 6).ToList())
+                            {
+                                if (item.IndexImage == 1)
+                                {
+                                    <div class="carousel-item active">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="frame-after">
+                                                    <div class="youtube-panel">
+                                                        <a class="figure-bn-group d-block videoxy aos-init aos-animate" href="@item.VideoUrl" data-aos="zoom-in" data-aos-duration="600" data-aos-once="true">
+                                                            <picture>
+                                                                <div class="video-frame">
+                                                                    <img src="~/Images/Mobile/play_youtube_mobile.png" />
+                                                                </div>
+                                                            </picture>
+                                                        </a>
+                                                        @*<img class="imgAfterBefore" src="~/Images/youtubePanel.png" />*@
+                                                    </div>
+                                                    <div class="image-panel-mobile" style="background-image: url(../../Images/Mobile/after_before_mobile_1.png);">
+                                                        <div class="btnViewImage" data-toggle="modal" data-target="#@item.Title">Xem ảnh >></div>
+                                                    </div>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade modal-vertical-centered" id="@item.Title" role="dialog">
+                                                        <div class="modal-dialog">
+                                                            <img class="imgBeforeAfter" src="~/Images/Mobile/after_before_mobile.png" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="carousel-item">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="frame-after">
+                                                    <div class="youtube-panel">
+                                                        <a class="figure-bn-group d-block videoxy aos-init aos-animate" href="@item.VideoUrl" data-aos="zoom-in" data-aos-duration="600" data-aos-once="true">
+                                                            <picture>
+                                                                <div class="video-frame">
+                                                                    <img src="~/Images/Mobile/play_youtube_mobile.png" />
+                                                                </div>
+                                                            </picture>
+                                                        </a>
+                                                        @*<img class="imgAfterBefore" src="~/Images/youtubePanel.png" />*@
+                                                    </div>
+                                                    <div class="image-panel-mobile" style="background-image: url(../../Images/Mobile/after_before_mobile_1.png);">
+                                                        <div class="btnViewImage" data-toggle="modal" data-target="#@item.Title">Xem ảnh >></div>
+                                                    </div>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade modal-vertical-centered" id="@item.Title" role="dialog">
+                                                        <div class="modal-dialog">
+                                                            <img class="imgBeforeAfter" src="~/Images/Mobile/after_before_mobile.png" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                        </div>
+                        <div id="customerResult" style="display:flex; justify-content: center; margin-top: 30px;">
+                            <div>
+                                <a class="carousel-control-prev" href="#customerImageMobile" role="button" data-slide="prev">
+                                    <img src="../Images/pre-arrow.png" alt="">
+                                </a>
+                            </div>
+                            <div>
+                                <ul class="carousel-indicators" style="position: relative;; margin: 0px; margin-top: 13px; ">
+                                    @for (var i = 0; i < 6; i++)
+                                    {
+                                        if (i == 0)
+                                        {
+                                            <li data-target="#customerImageMobile" data-slide-to="@i" class="active"></li>
+                                        }
+                                        else
+                                        {
+                                            <li data-target="#customerImageMobile" data-slide-to="@i"></li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                            <div>
+                                <a class="carousel-control-next" href="#customerImageMobile" role="button" data-slide="next">
+                                    <img src="../Images/next-arrow.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!------------------- END:CUSTOMER ------------------->
+    <!------------------- PROGRESS ------------------->
+
+    <section class="intro">
+        <div class="main-title margin-top-title">
+            <h2>CÁC QUY TRÌNH THỰC HIỆN PHẪU THUẬT</h2>
+        </div>
+        <div class="intro-block">
+            <div class="centerfold-wrap">
+                <div class="hex-master-wrap">
+                    <div class="grid-1">
+                        <div class="hex-wrap backend" data-title="BACKEND" data-content="@Model.ProcessSurgerys.Find(m => m.Index == 1).Key" data-color="#333333">
+                            <div class="hex-init"></div>
+                            <div class="hex-borders">
+                                <div class="border-1"></div>
+                                <div class="border-2"></div>
+                                <div class="border-3"></div>
+                            </div>
+                            <div class="hexagon">
+                                <div class="hex-inner-1">
+                                    <div class="hex-inner-2">
+                                        <img src="@Model.ProcessSurgerys.Find(m => m.Index == 1).ImageUrl" width="150" height="170" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hex-wrap frontend" data-title="FRONTEND" data-content="@Model.ProcessSurgerys.Find(m => m.Index == 2).Key" data-color="#16A085">
+
+                            <div class="hex-init"></div>
+                            <div class="hex-borders">
+                                <div class="border-1"></div>
+                                <div class="border-2"></div>
+                                <div class="border-3"></div>
+                            </div>
+
+                            <div class="hexagon">
+                                <div class="hex-inner-1">
+                                    <div class="hex-inner-2">
+                                        <img src="@Model.ProcessSurgerys.Find(m => m.Index == 2).ImageUrl" width="150" height="170" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid-2">
+                        <div class="hex-wrap html" data-title="HTML5" data-content="@Model.ProcessSurgerys.Find(m => m.Index == 6).Key" data-color="#E34C26">
+                            <div class="hex-init"></div>
+                            <div class="hex-borders">
+                                <div class="border-1"></div>
+                                <div class="border-2"></div>
+                                <div class="border-3"></div>
+                            </div>
+                            <div class="hexagon">
+                                <div class="hex-inner-1">
+                                    <div class="hex-inner-2">
+                                        <img src="@Model.ProcessSurgerys.Find(m => m.Index == 6).ImageUrl" width="150" height="170" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hex-wrap css" data-title="CSS3" data-content="css-desc" data-color="#0083de">
+                            <div class="hex-init"></div>
+                            <div class="hex-borders">
+                                <div class="border-1"></div>
+                                <div class="border-2"></div>
+                                <div class="border-3"></div>
+                            </div>
+                            <div class="hexagon">
+                                <div class="hex-inner-1">
+                                    <div class="hex-inner-2">
+                                        <img src="@Model.ProcessSurgerys.Find(m => m.Index == 0).ImageUrl" width="150" height="170" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hex-wrap jquery" data-title="JAVASCRIPT" data-content="@Model.ProcessSurgerys.Find(m => m.Index == 3).Key" data-color="#8cc84b">
+                            <div class="hex-init"></div>
+                            <div class="hex-borders">
+                                <div class="border-1"></div>
+                                <div class="border-2"></div>
+                                <div class="border-3"></div>
+                            </div>
+                            <div class="hexagon">
+                                <div class="hex-inner-1">
+                                    <div class="hex-inner-2">
+                                        <img src="@Model.ProcessSurgerys.Find(m => m.Index == 3).ImageUrl" width="150" height="170" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid-3">
+                        <div class="hex-wrap gui" data-title="USER INTERFACE" data-content="@Model.ProcessSurgerys.Find(m => m.Index == 5).Key" data-color="#2C3E52">
+                            <div class="hex-init"></div>
+                            <div class="hex-borders">
+                                <div class="border-1"></div>
+                                <div class="border-2"></div>
+                                <div class="border-3"></div>
+                            </div>
+                            <div class="hexagon">
+                                <div class="hex-inner-1">
+                                    <div class="hex-inner-2">
+                                        <img src="@Model.ProcessSurgerys.Find(m => m.Index == 5).ImageUrl" width="150" height="170" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hex-wrap seo" data-title="SEO" data-content="@Model.ProcessSurgerys.Find(m => m.Index == 4).Key" data-color="#C0392B">
+                            <div class="hex-init"></div>
+                            <div class="hex-borders">
+                                <div class="border-1"></div>
+                                <div class="border-2"></div>
+                                <div class="border-3"></div>
+                            </div>
+                            <div class="hexagon">
+                                <div class="hex-inner-1">
+                                    <div class="hex-inner-2">
+                                        <img src="@Model.ProcessSurgerys.Find(m => m.Index == 4).ImageUrl" width="150" height="170" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-display">
+                    <div class="code-description">
+                        <div class="@Model.ProcessSurgerys.Find(m => m.Index == 1).Key">
+                            <div class="panel panel-default">
+                                @Model.ProcessSurgerys.Find(m => m.Index == 1).Title
+                            </div>
+                            <div class="panel-content">
+                                @Model.ProcessSurgerys.Find(m => m.Index == 1).Content
+                            </div>
+                        </div>
+                        <div class="@Model.ProcessSurgerys.Find(m => m.Index == 2).Key">
+                            <div class="panel panel-default">
+                                @Model.ProcessSurgerys.Find(m => m.Index == 2).Title
+                            </div>
+                            <div class="panel-content">
+                                @Model.ProcessSurgerys.Find(m => m.Index == 2).Content
+                            </div>
+                        </div>
+                        <div class="@Model.ProcessSurgerys.Find(m => m.Index == 3).Key">
+                            <div class="panel panel-default">
+                                @Model.ProcessSurgerys.Find(m => m.Index == 3).Title
+                            </div>
+                            <div class="panel-content preline">
+                                @Model.ProcessSurgerys.Find(m => m.Index == 3).Content
+                            </div>
+                        </div>
+                        <div class="@Model.ProcessSurgerys.Find(m => m.Index == 4).Key">
+                            <div class="panel panel-default">
+                                @Model.ProcessSurgerys.Find(m => m.Index == 4).Title
+                            </div>
+                            <div class="panel-content preline">
+                                @Model.ProcessSurgerys.Find(m => m.Index == 4).Content
+                            </div>
+                        </div>
+                        <div class="@Model.ProcessSurgerys.Find(m => m.Index == 5).Key">
+                            <div class="panel panel-default">
+                                @Model.ProcessSurgerys.Find(m => m.Index == 5).Title
+                            </div>
+                            <div class="panel-content">
+                                @Model.ProcessSurgerys.Find(m => m.Index == 5).Content
+                            </div>
+                        </div>
+                        <div class="@Model.ProcessSurgerys.Find(m => m.Index == 6).Key">
+                            <div class="panel panel-default">
+                                @Model.ProcessSurgerys.Find(m => m.Index == 6).Title
+                            </div>
+                            <div class="panel-content preline">
+                                @Model.ProcessSurgerys.Find(m => m.Index == 6).Content
+                            </div>
+                        </div>
+                        <div class="css-desc">
+                        </div>
+                    </div>
+                </div>
+                <div class="hoverblock"></div>
+            </div> <!-- End Centerfold-Wrap -->
+        </div>
+        <div class="process-mobile">
+
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false">
+                <div class="link-carousel">
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <img src="../Images/pre-arrow.png" alt="">
+                    </a>
+                    <ol class="carousel-indicators" style="margin-left: 120px; bottom: -15px;">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+                    </ol>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <img src="../Images/next-arrow.png" alt="">
+                    </a>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <img src="../Images/pre-arrow.png" alt="">
+                    </a>
+                </div>
+
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="panel-process">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">@Model.ProcessSurgerys.Find(m => m.Index == 2).Title</div>
+                                <div class="panel-body">@Model.ProcessSurgerys.Find(m => m.Index == 2).Content</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="panel-process">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">@Model.ProcessSurgerys.Find(m => m.Index == 3).Title</div>
+                                <div class="panel-body preline" style="padding-top: 15px !important;">@Model.ProcessSurgerys.Find(m => m.Index == 3).Content</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="panel-process">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">@Model.ProcessSurgerys.Find(m => m.Index == 4).Title</div>
+                                <div class="panel-body preline" style="padding-top: 15px !important;">@Model.ProcessSurgerys.Find(m => m.Index == 4).Content</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="panel-process">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">@Model.ProcessSurgerys.Find(m => m.Index == 5).Title</div>
+                                <div class="panel-body">@Model.ProcessSurgerys.Find(m => m.Index == 5).Content</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="panel-process">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">@Model.ProcessSurgerys.Find(m => m.Index == 6).Title</div>
+                                <div class="panel-body preline" style="padding-top: 15px !important;">@Model.ProcessSurgerys.Find(m => m.Index == 6).Content</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="panel-process">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">@Model.ProcessSurgerys.Find(m => m.Index == 1).Title</div>
+                                <div class="panel-body">@Model.ProcessSurgerys.Find(m => m.Index == 1).Content</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-process">
+                <img src="../Images/Mobile/polygon_mobile.png" />
+            </div>
+        </div>
+
+    </section>
+    <!------------------- END:PROGRESS ------------------->
+
+    <section class="form-submit">
+        <div class="frame-submit col-md-9">
+            <div class="submit-title">
+                <h2>ĐĂNG KÍ NHẬN TƯ VẤN VÀ ƯU ĐÃI</h2>
+            </div>
+            <div>
+                <div class="control row">
+                    <div class="col col-md-4">
+                        <input class="form-control" id="txtFullName" placeholder="Họ tên ..." />
+                    </div>
+                    <div class="col col-md-4">
+                        <input class="form-control" id="txtPhoneNumber" placeholder="Số điện thoại ..." />
+                    </div>
+                    <div class="col col-md-4">
+                        <input class="form-control" id="txtEmailAddress" placeholder="Email (nếu có) ..." />
+                    </div>
+                    <div class="col col-md-12 margin-top-40">
+                        <textarea placeholder="Mô tả tình trạng, dịch vụ cần tư vấn ..." id="txtContent" class="form-control" rows="12"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="button-register">
+                <input type="submit" id="submitFeedback" class="btn btn-success btn-register" value="Đăng kí ngay" />
+            </div>
+        </div>
+        <div class="col-md-3 mau-tuvan">
+            <img src="../Images/tuvan_mau.png" />
+        </div>
+    </section>
+
+    <section class="bn-group">
+        <div class="container">
+            <div class="main-title">
+                <h2 style="color: #ffffff">THẨM MỸ VIỆN @Model.ShopInformation.Name</h2>
+                <p>Địa chỉ thẩm mỹ uy tín hàng đầu Hà Nội</p>
+            </div>
+            <div class="row">
+                <div class="col-md-3 px-md-0 model-image">
+                    <div class="bn-group-txt bn-group-txt-l">
+                        <div data-aos="fade-right" data-aos-delay="50" data-aos-duration="600" data-aos-once="true" class="aos-init aos-animate" style="height: 24px;"></div>
+                        <ul>
+                            <li data-aos="fade-up" style="margin-right: -90px; margin-top: -10px;" data-aos-delay="50" data-aos-duration="600" data-aos-once="true" class="aos-init aos-animate">
+                                <a data-placement="top" data-original-title="" title="">NÂNG MŨI LÀ GÌ?</a>
+                            </li>
+                            <li data-aos="fade-up" style="margin-top: 10px; margin-right: -20px;" data-aos-delay="50" data-aos-duration="600" data-aos-once="true" class="aos-init aos-animate">
+                                <a data-placement="top" data-original-title="" title="">ĐỊA CHỈ NÂNG NGỰC UY TÍN TẠI HÀ NỘI</a>
+                            </li>
+                            <li data-aos="fade-up" style="margin-top: 42px; margin-right: 10px;" data-aos-delay="50" data-aos-duration="600" data-aos-once="true" class="aos-init aos-animate">
+                                <a data-placement="top" data-original-title="" title="">NÂNG MŨI AN TOÀN</a>
+                            </li>
+                            <li data-aos="fade-up" style="margin-top: 60px; margin-right: 10px;" data-aos-delay="50" data-aos-duration="600" data-aos-once="true" class="aos-init aos-animate">
+                                <a data-placement="top" data-original-title="" title="">KHI NÀO NÊN LÀM PHẪU THUẬT THẨM MỸ?</a>
+                            </li>
+                            <li style="display:none" data-aos="fade-up" data-aos-delay="50" data-aos-duration="600" data-aos-once="true" class="aos-init aos-animate">
+                                <a data-placement="top" data-original-title="" title="">KHI NÀO NÊN LÀM PHẪU THUẬT THẨM MỸ?</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 px-md-0 model-image">
+                    <a class="figure-bn-group d-block videoxy aos-init aos-animate" href="https://www.youtube.com/watch?v=2uXhnYVNsxs" data-aos="zoom-in" data-aos-duration="600" data-aos-once="true">
+                        <picture>
+                            <source media="(min-width: 769px)" srcset="../Images/youtube_model.png class="mw-100">
+                            <img src="../Images/youtube_model.png" alt="" class="w-100">
+                        </picture>
+                    </a>
+                </div>
+                <div class="col-md-3 px-md-0 model-image">
+                    <div class="bn-group-txt bn-group-txt-r">
+                        <div data-aos="fade-left" data-aos-delay="50" data-aos-duration="600" data-aos-once="true" class="aos-init aos-animate" style="height: 24px;"></div>
+                        <ul>
+                            <li data-aos="fade-up" style=" margin-top: -10px; margin-left: -85px; " data-aos-delay="50" data-aos-duration="600" data-aos-once="true" class="aos-init aos-animate">
+                                <a data-placement="top" data-original-title="" title="">Thẩm mỹ viện hàng đầu tại Hà Nội</a>
+                            </li>
+                            <li data-aos="fade-up" style="margin-top: 14px; margin-left: -20px;" data-aos-delay="50" data-aos-duration="600" data-aos-once="true" class="aos-init aos-animate">
+                                <a data-placement="top" data-original-title="" title="">TMV Nagami ở đâu?</a>
+                            </li>
+                            <li data-aos="fade-up" style=" margin-top: 37px; margin-left: 15px;" data-aos-delay="50" data-aos-duration="600" data-aos-once="true" class="aos-init aos-animate">
+                                <a data-placement="top" data-original-title="" title="">Mùa nào nâng mũi tốt nhất?</a>
+                            </li>
+                            <li data-aos="fade-up" style="margin-top: 50px; margin-left: 20px;" data-aos-delay="50" data-aos-duration="600" data-aos-once="true" class="aos-init aos-animate">
+                                <a data-placement="top" data-original-title="" title="">Thẩm mĩ viện nào nâng mũi tốt nhất ở Hà Nội?</a>
+                            </li>
+                            <li style="display: none;" data-aos="fade-up" data-aos-delay="50" data-aos-duration="600" data-aos-once="true" class="aos-init aos-animate">
+                                <a data-placement="top" data-original-title="" title="">Địa chỉ làm đẹp tin cậy của sao và hàng triệu khách hàng</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="mobile-view">
+        <div class="link-frame">
+            <ul>
+                <li>
+                    <a>Nâng mũi là gì?</a>
+                </li>
+                <li>
+                    <a>Địa chỉ nâng ngực uy tín tại Hà Nội.</a>
+                </li>
+                <li>
+                    <a>Nâng mũi an toàn.</a>
+                </li>
+                <li>
+                    <a>Khi nào nên làm phẫu thuật thẩm mỹ?</a>
+                </li>
+            </ul>
+
+            <ul style="padding-top: 0px;">
+                <li>
+                    <a>Thẩm mỹ viện hàng đầu tại Hà Nội.</a>
+                </li>
+                <li>
+                    <a>TMV Nagami ở đâu?</a>
+                </li>
+                <li>
+                    <a>Mùa nào nâng mũi tốt nhất?</a>
+                </li>
+                <li>
+                    <a>Thẩm mĩ viện nào nâng mũi tốt nhất ở Hà Nội?</a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!------------------- BUTTON ON TOP ------------------->
+    <!--<section class="ontop affix-bottom">
+        <span class="d-none d-md-inline">(*) Kết quả tùy thuộc cơ địa của mỗi người</span>
+        <a href="#" class="font-weight-semibold"><i class="icon-up mr-2"></i><span class="d-none d-md-inline-flex">Lên đầu trang</span></a>
+    </section>-->
+    <!------------------- END BUTTON ON TOP ------------------->
+    <!------------------- BUTTON SMART FUNCTION ------------------->
+    <div class="floating-btn d-none d-md-flex">
+        <div class="floating-btn-wrap">
+            <a class="register"><img src="../Images/ico-join.png" alt="" width="28"><span class="d-block">Đăng ký<br>tư vấn</span></a>
+            <a href="https://m.me/101438018713219" class="message" target="_blank"><img src="../Images/ico-message.png" alt="" class="mw-100"><span class="d-block">Nhắn tin</span></a>
+            <a href="tel:@Model.ShopInformation.HotLine" class="hotline"><img src="../Images/ico-call.png" alt="" class="mw-100"><span class="d-block">@Model.ShopInformation.HotLine</span></a>
+        </div>
+        <div class="register-form">
+            <form id="frmdk1">
+                <button type="button" class="close"><span aria-hidden="true">×</span></button>
+                <h4>Đăng ký tư vấn</h4>
+                <div class="form-group">
+                    <label for="fullname">Họ và tên:</label>
+                    <input type="text" class="form-control" id="txtName" placeholder="Nhập Họ và tên…">
+                </div>
+                <div class="form-group">
+                    <label for="phonenumber">Số điện thoại:</label>
+                    <input type="text" class="form-control" id="txtPhone" placeholder="Nhập số điện thoại…">
+                </div>
+
+                <div class="form-group">
+                    <label for="phonenumber">Email:</label>
+                    <input type="text" class="form-control" id="txtEmail" placeholder="Nhập email">
+                </div>
+                <div class="form-group">
+                    <label for="">Dịch vụ quan tâm:</label>
+                    <textarea class="form-control" id="txtNote" placeholder="Mô tả tình trạng, dịch vụ cần tư vấn…" rows="3"></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="button" id="btnSendContact" class="btn btn-warning">Đăng kí ngay</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!------------------- END BUTTON SMART FUNCTION ------------------->
+    <!------------------- BUTTON FB MESS & CALL MOBILE ------------------->
+    <div class="floating-btn-contact d-md-none">
+        <a class="bt-call" href="tel:@Model.ShopInformation.HotLine"><i><img src="../Images/ico-call.png" alt=""></i><span>@Model.ShopInformation.HotLine</span></a>
+        <a class="bt-fbmessage" href="https://m.me/101438018713219" target="_blank"><i><img src="../Images/ico-message.png" alt=""></i><span>CHAT NGAY</span></a>
+    </div>
+    <!------------------- END BUTTON FB MESS & CALL MOBILE ------------------->
+    <!------------------- FOOTER ------------------->
+    <footer class="desktop-view" style="position: relative">
+        <img class="footer-left" src="../Images/footer_corner_left.png" />
+        <img class="footer-right" src="../Images/footer_corner_right.png" />
+        <div class="footer">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="ft-copyright">
+                        <a class="d-md-block mb-2 text-center" href="/"><img width="200px" src="../Images/logo_footer.png" alt="" class="mw-100"></a>
+                        <p>
+                            <span>
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>  Địa chỉ: @Model.ShopInformation.Address
+                            </span>
+                        </p>
+                        <p>
+                            <span>
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>  Giờ làm việc: @Model.ShopInformation.WorkHour
+                            </span>
+                        </p>
+                        <p>
+                            <span>
+                                <i class="fa fa-phone" aria-hidden="true"></i>  Hotline: @Model.ShopInformation.HotLine
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="footer-banner">
+                        <div class="img-qc">
+                            <img src="../Images/footer_banner.png" />
+                            <div class="btn btn-primary">
+                                <i class="fa fa-commenting-o"></i> Gửi tin nhắn
+                            </div>
+                        </div>
+                    </div>
+
+                    <ul class="social-ft text-center">
+                        <li><a href="@Model.ShopInformation.Facebook_Url" target="_blank"><img src="../Images/icon1.png" /></a></li>
+                        <li><a href="@Model.ShopInformation.Zalo_Url" class="youtube" target="_blank"><img src="../Images/icon2.png" /></a></li>
+                        <li><a href="@Model.ShopInformation.TickToc_Url" target="_blank"><img src="../Images/icon3.png" /></a></li>
+                        <li><a href="@Model.ShopInformation.Instagram_Url" target="_blank"><img src="../Images/icon4.png" /></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <p class="footer-note">@Model.ShopInformation.Slogen</p>
+                    <span class="d-block d-md-inline mt-4 mb-3 mr-md-5"><img src="../Images/footer_tick.png" class="mw-100" alt="" width="300"></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="mobile-view">
+        <img src="../Images/Mobile/footer_background_mobile.png" />
+    </div>
+    <!------------------- END : FOOTER ------------------->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W58M4CD"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9S6QC8"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+</body>
+</html>

@@ -1,0 +1,704 @@
+﻿@model Dress_BLL.Model.NewsArticlesViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html style="overflow-y: auto;">
+<head>
+    <title>Viện Thẩm Mỹ Nagami</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="rating" content="general">
+    <meta name="author" content="Thẩm mỹ viện Nagami">
+    <meta name="copyright" content="vtcmobile">
+    <meta name="expires" content="never">
+    <meta name="distribution" content="global">
+    <meta name="RESOURCE-TYPE" content="DOCUMENT">
+    <meta name="GENERATOR" content="VTC Plus">
+    <meta name="googlebot" content="INDEX,FOLLOW,ARCHIVE">
+    <meta name="robots" content="INDEX,FOLLOW,ARCHIVE">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="width" name="MobileOptimized">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="name" content="content" charset="utf-8">
+    <meta name="language" content="vi-vn">
+    <meta http-equiv="content-language" content="vi">
+    <meta content="Thẩm mỹ viện số 1 việt nam" name="description">
+    <meta content="Viện Thẩm Mỹ Nagami" name="keywords">
+    <meta name="format-detection" content="telephone=no">
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/lightslider.css" rel="stylesheet">
+    <link href="~/Content/aos.css" rel="stylesheet">
+    <link href="~/Content/custom.css" rel="stylesheet">
+    <link href="~/Content/responsive.css" rel="stylesheet">
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/sweetalert.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Oswald:400&amp;display=swap" rel="stylesheet">
+    <link rel="icon" href="../Images/quytrinh_logo_120x115.png">
+
+    <script type="text/javascript" src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/popper.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lightslider.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/aos.js"></script>
+    <script type="text/javascript" src="~/Scripts/custom.js"></script>
+    <script type="text/javascript" src="~/Scripts/common.js"></script>
+    <script type="text/javascript" src="~/Scripts/sweetalert.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/site.js"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="DqnrywZs"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".search_box").change(function (e) {
+                var txtText = $('.txtSeach').val();
+                if (txtText.length == 0) {
+                    swal("", "Bạn cần nhập text để tìm kiếm");
+                } else {
+                    location.href = '/Home/Search?Key=' + txtText;
+                }
+            });
+            $("#search").click(function () {
+                location.href = '/Home/Search?Key=' + $("#search-value").val();
+            });
+
+            $('.txtSeach').on('keyup', function (e) {
+                if (e.keyCode == 13) {
+                    var txtText = $('.txtSeach').val();
+                    if (txtText.length == 0) {
+                        swal("", "Bạn cần nhập text để tìm kiếm");
+                    } else {
+                        location.href = '/Home/Search?Key=' + txtText;
+                    }
+                }
+            });
+
+            $('#search-value').keypress(function (e) {
+                var key = e.which;
+                if (key == 13)  // the enter key code
+                {
+                    $('#search').click();
+                    return false;
+                }
+            });
+
+            $('#submitFeedback').click(function () {
+                if ($('#txtEmailAddress').val() != "" && $('#txtFullName').val() != "" && $('#txtPhoneNumber').val() != "") {
+                    AddFeedback('txtEmailAddress', 'txtFullName', 'txtPhoneNumber', 'txtContent');
+                }
+                else {
+                    alert("Bạn cần nhập đầy đu thông tin yêu cầu tư vấn !!");
+                }
+            });
+
+            function AddFeedback(email, name, phone, note) {
+                var model = {
+                    'Email': $('#' + email).val(),
+                    'Name': $('#' + name).val(),
+                    'Phone': $('#' + phone).val(),
+                    'Note': $('#' + note).val()
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("AddFeedback")",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(model),
+                    success: function (data) {
+                        if (data.Response == "Success") {
+                            $('#' + email).val("");
+                            $('#' + name).val("");
+                            $('#' + phone).val("");
+                            $('#' + note).val("");
+                            $("html").scrollTop(0);
+                            alert("Gửi yêu cầu thành công.");
+                        }
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
+                });
+            }
+        });
+    </script>
+</head>
+<body class="scroll" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0" style="overflow-x: hidden;">
+
+    <header>
+        <div class="container" style="padding:10px">
+            <div class="row justify-content-between">
+                <div class="sologan col-md-7">
+                    <h4>@Model.ShopInformation.Title</h4>
+                </div>
+                <div class="search col-md-5">
+                    <ul class="social">
+                        <li><a href="@Model.ShopInformation.Facebook_Url" target="_blank"><img src="~/Images/facebook_icon.png" alt="" width="30" /></a></li>
+                        <li><a href="@Model.ShopInformation.Youtube_Url" target="_blank"><img src="~/Images/youtube_icon.png" alt="" width="30" /></a></li>
+                        <li><a href="@Model.ShopInformation.TickToc_Url" class="youtube" target="_blank"><img src="~/Images/tiktok_icon.png" alt="" width="30" /></a></li>
+                        <li><a href="@Model.ShopInformation.Instagram_Url" target="_blank"><img src="~/Images/instagram_icon.png" alt="" width="30" /></a></li>
+                        <li><a href="@Model.ShopInformation.Zalo_Url" target="_blank"><img src="../Images/zalo_icon.png" alt="" width="30" /></a></li>
+                        <li>
+                            <input id="search-value" maxlength="30" type="text" placeholder="Tìm kiếm...." class="top-search" /><i class="fa fa-search" id="search" style=" margin-left: -20px; color: #844400;" aria-hidden="true"></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!------------------- TOP SEARCH & SOCIAL ------------------->
+    <!------------------- NAVIGATOR ------------------->
+    <section class="sec-nav affix">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="nav-mobile d-md-none">
+                    <button class="navbar-toggler icon-menu" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <a class="navbar-brand" href="javascript:;"><span class="lg-bn"></span></a>
+                    <div class="search-mobile dropdown">
+                        <a class="dropdown-toggle" href="javascript:;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../Images/Mobile/search_mobile.png" alt="" class="mw-100"></a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <form class="search_box">
+                                <input type="search" maxlength="30" class="form-control txtSeach" placeholder="Tìm kiếm...." autofocus="">
+                            </form>
+                        </div>
+                    </div>
+                </div> <!------------------- HEADER MOBILE ------------------->
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                    <div class="logo-menu-mobile">
+                        <a href="@Url.Action("Index")"><img src="../Images/Mobile/menu_logo_mobile.png" /></a>
+                    </div>
+                    <ul class="navbar-nav navbar-left col-md-5 px-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Giới thiệu<i class="fa fa-caret-down icon-menu-left" aria-hidden="true"></i></a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <div class="submenu-item">
+                                    <div class="media">
+                                        <div class="media-photo-tm" style="margin-top: 15px;"><img src="../Images/menu_icon_gioithieu.png" alt="" class="mw-100"></div>
+                                        <div class="media-body pl-md-4 align-self-center">
+                                            <h4>Giới thiệu</h4>
+                                            <div class="sub-menu-display">
+                                                <div class="margin-left-30 min-width-250">
+                                                    <h6 class="title-service">Giới thiệu Nagami</h6>
+                                                    <ul>
+                                                        @foreach (var item in @Model.Navigations.Where(m => m.Group == "Giới thiệu Nagami"))
+                                                        {
+                                                            <li><a href="@item.Link" class="submenu-link">@item.Title</a></li>
+                                                        }
+                                                    </ul>
+                                                </div>
+
+                                                <div class="margin-left-30 min-width-250">
+                                                    <h6 class="title-service">Khuyến mãi</h6>
+                                                    <ul>
+                                                        @foreach (var item in @Model.Navigations.Where(m => m.Group == "Khuyến mãi"))
+                                                        {
+                                                            <li><a href="@item.Link" class="submenu-link">@item.Title</a></li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Thẩm mỹ khuôn mặt<i class="fa fa-caret-down icon-menu-left" aria-hidden="true"></i></a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <div class="submenu-item">
+                                    <div class="media">
+                                        <div class="media-photo-tm"><img src="../Images/menu_icon_mat.png" alt="" class="mw-100"></div>
+                                        <div class="media-body pl-md-4 align-self-center">
+                                            <h4>Thẩm mĩ khuôn mặt</h4>
+                                            <div class="sub-menu-display">
+                                                <div class="margin-left-30">
+                                                    <h6 class="title-service">Thẩm mỹ mắt</h6>
+                                                    <ul>
+                                                        @foreach (var item in @Model.Navigations.Where(m => m.Group == "Thẩm mỹ mắt"))
+                                                        {
+                                                            <li><a href="@item.Link" class="submenu-link">@item.Title</a></li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                                <div class="margin-left-30">
+                                                    <h6 class="title-service">Thẩm mỹ mũi</h6>
+                                                    <ul>
+                                                        @foreach (var item in @Model.Navigations.Where(m => m.Group == "Thẩm mỹ mũi"))
+                                                        {
+                                                            <li><a href="@item.Link" class="submenu-link">@item.Title</a></li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                                <div class="margin-left-30">
+                                                    <h6 class="title-service">Thẩm mỹ cằm</h6>
+                                                    <ul>
+                                                        @foreach (var item in @Model.Navigations.Where(m => m.Group == "Thẩm mỹ cằm"))
+                                                        {
+                                                            <li><a href="@item.Link" class="submenu-link">@item.Title</a></li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                                <div class="margin-left-30">
+                                                    <h6 class="title-service">Thẩm mỹ cấy mỡ</h6>
+                                                    <ul>
+                                                        @foreach (var item in @Model.Navigations.Where(m => m.Group == "Thẩm mỹ cấy mỡ"))
+                                                        {
+                                                            <li><a href="@item.Link" class="submenu-link">@item.Title</a></li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Thẩm mỹ vóc dáng<i class="fa fa-caret-down icon-menu-left" aria-hidden="true"></i></a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <div class="submenu-item">
+                                    <div class="media">
+                                        <div class="media-photo-tm"><img src="../Images/menu_icon_vocdang.png" alt="" class="mw-100"></div>
+                                        <div class="media-body pl-md-4">
+                                            <h4>Thẩm mỹ vóc dáng</h4>
+                                            <div class="sub-menu-display">
+                                                <div class="margin-left-30">
+                                                    <h6 class="title-service">Thẩm mỹ vòng 1</h6>
+                                                    <ul>
+                                                        @foreach (var item in @Model.Navigations.Where(m => m.Group == "Thẩm mỹ vòng 1"))
+                                                        {
+                                                            <li><a href="@item.Link" class="submenu-link">@item.Title</a></li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                                <div class="margin-left-30">
+                                                    <h6 class="title-service">Thẩm mỹ vòng 2</h6>
+                                                    <ul>
+                                                        @foreach (var item in @Model.Navigations.Where(m => m.Group == "Thẩm mỹ vòng 2"))
+                                                        {
+                                                            <li><a href="@item.Link" class="submenu-link">@item.Title</a></li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                                <div class="margin-left-30">
+                                                    <h6 class="title-service">Thẩm mỹ vòng 3</h6>
+                                                    <ul>
+                                                        @foreach (var item in @Model.Navigations.Where(m => m.Group == "Thẩm mỹ vòng 3"))
+                                                        {
+                                                            <li><a href="@item.Link" class="submenu-link">@item.Title</a></li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown" style="z-index: 100;">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Phun xăm thẩm mỹ<i class="fa fa-caret-down icon-menu-left" aria-hidden="true"></i></a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <div class="submenu-item">
+                                    <div class="media">
+                                        <div class="media-photo-tm" style="margin-top: 20px;"><img src="../Images/menu_icon_phunxam.png" alt="" class="mw-100"></div>
+                                        <div class="media-body pl-md-4">
+                                            <h4>Phun xăm thẩm mỹ</h4>
+                                            <div class="sub-menu-display">
+                                                <div class="margin-left-30 min-width-200">
+                                                    <h6 class="title-service">Phun thêu mày</h6>
+                                                    <ul>
+                                                        @foreach (var item in @Model.Navigations.Where(m => m.Group == "Phun thêu mày"))
+                                                        {
+                                                            <li><a href="@item.Link" class="submenu-link">@item.Title</a></li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                                <div class="margin-left-30 min-width-200">
+                                                    <h6 class="title-service">Phun thêu môi</h6>
+                                                    <ul>
+                                                        @foreach (var item in @Model.Navigations.Where(m => m.Group == "Phun thêu môi"))
+                                                        {
+                                                            <li><a href="@item.Link" class="submenu-link">@item.Title</a></li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                                <div class="margin-left-30 min-width-200">
+                                                    <h6 class="title-service">Phun thêu khác</h6>
+                                                    <ul>
+                                                        @foreach (var item in @Model.Navigations.Where(m => m.Group == "Phun thêu khác"))
+                                                        {
+                                                            <li><a href="@item.Link" class="submenu-link">@item.Title</a></li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <a class="navbar-brand col-md-2 px-0 d-none d-md-block" href="/"><span class="lg-bn"></span></a>
+                    <ul class="navbar-nav navbar-right col-md-5 px-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Điều trị da<i class="fa fa-caret-down icon-menu-left" aria-hidden="true"></i></a>
+                            <div class="dropdown-menu dropdown-others" aria-labelledby="navbarDropdownMenuLink">
+                                <div class="submenu-item">
+                                    <div class="media">
+                                        <div class="media-photo-tm" style="margin-top: 15px;"><img src="../Images/menu_icon_da.png" alt="" class="mw-100"></div>
+                                        <div class="media-body pl-md-4">
+                                            <h4>Điều trị da</h4>
+                                            <div class="csd">
+                                                <div class="margin-left-30 min-width-200">
+                                                    <ul>
+                                                        @foreach (var item in @Model.Navigations.Where(m => m.Group == "Điều trị da"))
+                                                        {
+                                                            <li><a href="@item.Link" class="submenu-link">@item.Title</a></li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Thẩm mỹ khác<i class="fa fa-caret-down icon-menu-left" aria-hidden="true"></i></a>
+                            <div class="dropdown-menu dropdown-others" aria-labelledby="navbarDropdownMenuLink">
+                                <div class="submenu-item">
+                                    <div class="media">
+                                        <div class="media-photo-tm" style="margin-top: 27px;"><img src="../Images/menu_icon_khac.png" alt="" class="mw-100"></div>
+                                        <div class="media-body pl-md-4">
+                                            <h4>Thẩm mỹ khác</h4>
+                                            <div class="csd">
+                                                <div class="margin-left-30 min-width-200">
+                                                    <ul>
+                                                        @foreach (var item in @Model.Navigations.Where(m => m.Group == "Thẩm mỹ khác"))
+                                                        {
+                                                            <li><a href="@item.Link" class="submenu-link">@item.Title</a></li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tin tức</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <div class="submenu-item">
+                                    <div class="media">
+                                        <div class="media-photo-tm" style="margin-top: 20px;"><img src="../Images/menu_icon_tintuc.png" alt="" class="mw-100"></div>
+                                        <div class="media-body pl-md-4">
+                                            <h4>Tin tức</h4>
+                                            <div style="display:flex; justify-content: center;">
+                                                <div class="margin-left-30 min-width-200">
+                                                    <ul>
+                                                        @foreach (var item in @Model.Navigations.Where(m => m.Group == "Tin tức"))
+                                                        {
+                                                            <li><a href="@item.Link" class="submenu-link">@item.Title</a></li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item d-none d-md-inline-block">
+                            <a class="nav-link hotline" style="max-width: 150px; font-weight: bold;" href="tel:@Model.ShopInformation.HotLine"><i class="fa fa-phone"></i>  @Model.ShopInformation.HotLine</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </section>
+
+    <section class="service-view news">
+        <div class="service-title desktop-view">
+            <a href=@Url.Action("Index","Home")>Trang chủ</a> / @Model.NewsArticles.Title
+        </div>
+        <div class="service-frame">
+            @* Section 1 *@
+            <h1 class="header-text-title text-center">
+                @Model.NewsArticles.Title
+            </h1>
+            <div class="content-service preline" id="content_1">
+                @Html.Raw(@Model.NewsArticles.Content1)
+            </div>
+            <div class="img-services">
+                <picture>
+                    <source media="(max-width: 769px)" srcset="@Url.Content(@Model.NewsArticles.Image1_Mobile_Url)" class="mw-100">
+                    <img src="@Url.Content(@Model.NewsArticles.Image1_Url)" />
+                </picture>
+            </div>
+
+            <div class="content-service preline" id="content_2">
+                @Html.Raw(@Model.NewsArticles.Content2)
+            </div>
+            <div class="img-services">
+                <picture>
+                    <source media="(max-width: 769px)" srcset="@Url.Content(@Model.NewsArticles.Image2_Mobile_Url)" class="mw-100">
+                    <img src="@Url.Content(@Model.NewsArticles.Image2_Url)" />
+                </picture>
+            </div>
+
+            <div class="content-service preline" id="content_3">
+                @Html.Raw(@Model.NewsArticles.Content3)
+            </div>
+            <div class="img-services">
+                <picture>
+                    <source media="(max-width: 769px)" srcset="@Url.Content(@Model.NewsArticles.Image3_Mobile_Url)" class="mw-100">
+                    <img src="@Url.Content(@Model.NewsArticles.Image3_Url)" />
+                </picture>
+            </div>
+
+            <div class="content-service preline" id="content_4">
+                @Html.Raw(@Model.NewsArticles.Content4)
+            </div>
+            <div class="col col-md-12 display-flex" style="margin-top: 20px;">
+                <div class="col col-md-6">
+                    <img class="img-service" src="@Url.Content(@Model.NewsArticles.Image4_1_Url)" />
+                </div>
+                <div class="col col-md-6">
+                    <img class="img-service" src="@Url.Content(@Model.NewsArticles.Image4_2_Url)" />
+                </div>
+            </div>
+            <div class="col col-md-12 display-flex margin-desktop" style="margin-top: 15px;">
+                <div class="col col-md-6">
+                    <img class="img-service" src="@Url.Content(@Model.NewsArticles.Image4_3_Url)" />
+                </div>
+                <div class="col col-md-6">
+                    <img class="img-service" src="@Url.Content(@Model.NewsArticles.Image4_4_Url)" />
+                </div>
+            </div>
+            <div class="decor">
+                <img src="../Images/Services/border_decor.png" />
+            </div>
+            <div class="col col-md-12 display-flex margin-top-30">
+                <div class="col col-md-6 reference">
+                    <div class="text-reference">
+                        DỊCH VỤ ĐI KÈM
+                    </div>
+                    @foreach (var item in Model.ServiceRefer)
+                    {
+                        <div class="row-reference">
+                            @if (item.LogoUrl != null)
+                            {
+                                <img width="60" src="@Url.Content(item.LogoUrl)" />
+                            }
+                            <a href="@item.Url">@item.Title</a>
+                        </div>
+                    }
+                </div>
+                <div class="col col-md-6">
+                    <div class="text-reference">
+                        TIN TỨC LIÊN QUAN
+                    </div>
+                    @foreach (var item in Model.InfoRefer)
+                    {
+                        <div class="row-reference">
+                            @if (item.LogoUrl != null)
+                            {
+                                <img width="60" src="@Url.Content(item.LogoUrl)" />
+                            }
+                            <a href="@item.Url">@item.Title</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tuvan" class="form-submit">
+        <div class="frame-submit col-md-9">
+            <div class="submit-title">
+                <h2>ĐĂNG KÍ NHẬN TƯ VẤN VÀ ƯU ĐÃI</h2>
+            </div>
+            <div>
+                <div class="control row">
+                    <div class="col col-md-4">
+                        <input class="form-control" id="txtFullName" placeholder="Họ tên ..." />
+                    </div>
+                    <div class="col col-md-4">
+                        <input class="form-control" id="txtPhoneNumber" placeholder="Số điện thoại ..." />
+                    </div>
+                    <div class="col col-md-4">
+                        <input class="form-control" id="txtEmailAddress" placeholder="Email (nếu có) ..." />
+                    </div>
+                    <div class="col col-md-12 margin-top-40">
+                        <textarea placeholder="Mô tả tình trạng, dịch vụ cần tư vấn ..." id="txtContent" class="form-control" rows="6"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="button-register">
+                <input type="submit" id="submitFeedback" class="btn btn-success btn-register" value="Đăng kí ngay" />
+            </div>
+        </div>
+        <div class="col-md-3 mau-tuvan">
+            <img src="@Model.ImageHome.FirstOrDefault(m => m.Type == "Register").Url" />
+        </div>
+    </section>
+
+    <!------------------- END BUTTON ON TOP ------------------->
+    <!------------------- BUTTON SMART FUNCTION ------------------->
+    <div class="floating-btn d-none d-md-flex">
+        <div class="floating-btn-wrap">
+            <a class="register"><img src="../Images/ico-join.png" alt="" width="28"><span class="d-block">Đăng ký<br>tư vấn</span></a>
+            <a href="https://m.me/101438018713219" class="message" target="_blank"><img src="../Images/ico-message.png" alt="" class="mw-100"><span class="d-block">Nhắn tin</span></a>
+            <a href="tel:@Model.ShopInformation.HotLine" class="hotline"><img src="../Images/ico-call.png" alt="" class="mw-100"><span class="d-block">@Model.ShopInformation.HotLine</span></a>
+        </div>
+        <div class="register-form">
+            <form id="frmdk1">
+                <button type="button" class="close"><span aria-hidden="true">×</span></button>
+                <h4>Đăng ký tư vấn</h4>
+                <div class="form-group">
+                    <label for="fullname">Họ và tên:</label>
+                    <input type="text" class="form-control" id="txtName" placeholder="Nhập Họ và tên…">
+                </div>
+                <div class="form-group">
+                    <label for="phonenumber">Số điện thoại:</label>
+                    <input type="text" class="form-control" id="txtPhone" placeholder="Nhập số điện thoại…">
+                </div>
+
+                <div class="form-group">
+                    <label for="phonenumber">Email:</label>
+                    <input type="text" class="form-control" id="txtEmail" placeholder="Nhập email">
+                </div>
+                <div class="form-group">
+                    <label for="">Dịch vụ quan tâm:</label>
+                    <textarea class="form-control" id="txtNote" placeholder="Mô tả tình trạng, dịch vụ cần tư vấn…" rows="3"></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="button" id="btnSendContact" class="btn btn-warning">Đăng kí ngay</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!------------------- END BUTTON SMART FUNCTION ------------------->
+    <!------------------- BUTTON FB MESS & CALL MOBILE ------------------->
+    <div class="floating-btn-contact d-md-none">
+        <a class="bt-call" href="tel:@Model.ShopInformation.HotLine"><i><img src="../Images/ico-call.png" alt=""></i><span>@Model.ShopInformation.HotLine</span></a>
+        <a class="bt-fbmessage" href="https://m.me/101438018713219" target="_blank"><i><img src="../Images/ico-message.png" alt=""></i><span>CHAT NGAY</span></a>
+    </div>
+    <!------------------- END BUTTON FB MESS & CALL MOBILE ------------------->
+    <!------------------- FOOTER ------------------->
+    <footer class="desktop-view" style="position: relative; background-image: url(@Model.ImageHome.FirstOrDefault(m => m.Type == "Footer_Web").Url);">
+        <img class="footer-left" src="@Model.ImageHome.FirstOrDefault(m => m.Type == "Footer_Left_Web").Url" />
+        <img class="footer-right" src="@Model.ImageHome.FirstOrDefault(m => m.Type == "Footer_Right_Web").Url" />
+        <div class="footer">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="ft-copyright">
+                        <a class="d-md-block mb-2 text-center" href="/"><img src="../Images/footer_logo.png" alt="" class="mw-100"></a>
+                        <div><img src="../Images/footer_line.png" width="100%" /></div>
+                        <div class="shop-info">
+                            <p><span>Đơn vị chủ quản: @Model.ShopInformation.Logo_Url</span></p>
+                            <p><span>Đăng ký lần đầu ngày: @Model.ShopInformation.Owner</span></p>
+                            <p><span>Mã số thuế/Mã số doanh nghiệp: @Model.ShopInformation.Email</span></p>
+                            <p style="max-width: 330px">
+                                <span>
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>  Địa chỉ: @Model.ShopInformation.Address
+                                </span>
+                            </p>
+                            <p>
+                                <span>
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>  Giờ làm việc: @Model.ShopInformation.WorkHour
+                                </span><br />(Từ Thứ 2 đến Chủ nhật)
+                            </p>
+                            <p>
+                                <span>
+                                    <i class="fa fa-phone" aria-hidden="true"></i>  Hotline: @Model.ShopInformation.HotLine
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" style="padding-left: 50px;">
+                    <p class="footer-note">@Model.ShopInformation.Slogen</p>
+                    <span class="d-block d-md-inline mt-4 mb-3 mr-md-5" style="margin-left: 30px;">
+                        <img src="../Images/footer_tick.png" class="mw-100" style="margin-top: 17px;" alt="" width="230">
+                    </span>
+                    <ul class="social-ft">
+                        <li><a href="@Model.ShopInformation.Facebook_Url" target="_blank"><img src="../Images/icon1.png" /></a></li>
+                        <li><a href="@Model.ShopInformation.Youtube_Url" class="youtube" target="_blank"><img src="../Images/icon2.png" /></a></li>
+                        <li><a href="@Model.ShopInformation.TickToc_Url" target="_blank"><img src="../Images/icon3.png" /></a></li>
+                        <li><a href="@Model.ShopInformation.Instagram_Url" target="_blank"><img src="../Images/icon4.png" /></a></li>
+                        <li><a href="@Model.ShopInformation.Zalo_Url" target="_blank"><img src="../Images/icon5.png" /></a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="footer-banner">
+                        <div class="fb-page" data-href="https://www.facebook.com/Th%E1%BA%A9m-M%E1%BB%B9-Vi%E1%BB%87n-Nagami-101438018713219/" data-tabs="timeline" data-width="400" data-height="325" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <footer class="mobile-view" style="background-image: url(@Model.ImageHome.FirstOrDefault(m => m.Type == "Footer_Mobile").Url); height: 580px; background-size: cover; position: relative;">
+        <img class="footer-left" src="@Model.ImageHome.FirstOrDefault(m => m.Type == "Footer_Left_Mobile").Url" />
+        <img class="footer-right" src="@Model.ImageHome.FirstOrDefault(m => m.Type == "Footer_Right_Mobile").Url" />
+        <div class="ft-infor">
+            <a class="d-md-block mb-2 text-center" href="/"><img width="150px" src="../Images/logo_footer.png" alt="" class="mw-100"></a>
+        </div>
+        <div style="padding: 0px 50px; margin-top: 10px;">
+            <p>
+                <span>
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>  Địa chỉ: @Model.ShopInformation.Address
+                </span>
+            </p>
+            <p>
+                <div>
+                    <i class="fa fa-clock-o" aria-hidden="true"></i>  Giờ làm việc: @Model.ShopInformation.WorkHour</br>(Từ thứ 2 đến chủ nhật)
+                </div>
+            </p>
+            <p>
+                <div>
+                    <i class="fa fa-phone" aria-hidden="true"></i><span style="color: rgb(132, 68, 0)">Hotline: @Model.ShopInformation.HotLine</span>
+                </div>
+            </p>
+        </div>
+        <div style="padding: 0px 30px">
+            <p>@Model.ShopInformation.Slogen</p>
+        </div>
+        <ul class="social-ft text-center" style="margin-top: 0px;">
+            <li><a href="@Model.ShopInformation.Facebook_Url" target="_blank"><img src="../Images/icon1.png" /></a></li>
+            <li><a href="@Model.ShopInformation.Youtube_Url" class="youtube" target="_blank"><img src="../Images/icon2.png" /></a></li>
+            <li><a href="@Model.ShopInformation.TickToc_Url" target="_blank"><img src="../Images/icon3.png" /></a></li>
+            <li><a href="@Model.ShopInformation.Instagram_Url" target="_blank"><img src="../Images/icon4.png" /></a></li>
+            <li><a href="@Model.ShopInformation.Zalo_Url" target="_blank"><img src="../Images/icon5.png" alt="" width="30" /></a></li>
+        </ul>
+        <div style="width: 100%; text-align:center;">
+            <span class="d-block d-md-inline mt-4 mb-3 mr-md-5"><img src="../Images/footer_tick.png" class="mw-100" alt="" width="200"></span>
+        </div>
+    </footer>
+    <!------------------- END : FOOTER ------------------->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W58M4CD"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9S6QC8"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+</body>
+</html>

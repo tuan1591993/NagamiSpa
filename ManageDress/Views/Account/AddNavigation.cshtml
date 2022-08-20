@@ -1,0 +1,82 @@
+﻿@model Dress_BLL.Model.NavigationModel
+@{
+    ViewBag.Title = "ManageUser";
+    Layout = "~/Views/Account/Admin.cshtml";
+    ViewData["Title"] = "Administration Console";
+    ViewBag.Home = "active";
+}
+
+<script>
+    $(document).ready(function () {
+        $("#btnSave").click(function () {
+            var model = {
+                'Title': $("#txtTitle").val(),
+                'Link': $("#txtLink").val(),
+                'Group': $('#dllGroup').find(":selected").text()
+            }
+
+             $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("UpdateNavigation")",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(model),
+                    success: function (data) {
+                        if (data.Response == "Success") {
+                            alert("Thêm mới đường dẫn thành công.");
+                            location.href = '/Account/ManageNavigation';
+                        }
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
+             });
+        });
+    });
+</script>
+
+<div class="edit-content">
+    <div class="card">
+        <div class="card-header bg-primary text-white">Thêm đường dẫn trang dịch vụ</div>
+        <div class="card-body">
+            <div class="col col-md-4">
+                <div class="form-group">
+                    <label for="email">Tiêu đề:</label>
+                    <input type="text" class="form-control" id="txtTitle" placeholder="Nhập tiêu đề">
+                </div>
+            </div>
+            <div class="col col-md-4">
+                <div class="form-group">
+                    <label for="email">Đường dẫn:</label>
+                    <input type="text" class="form-control" id="txtLink" placeholder="Nhập đường dẫn">
+                </div>
+            </div>
+            <div class="col col-md-4">
+                <div class="form-group">
+                    <label for="email">Chọn phân nhóm:</label>
+                    <select id="dllGroup" class="form-control">
+                        <option value="Giới thiệu Nagami">Giới thiệu Nagami</option>
+                        <option value="Khuyến mã">Khuyến mãi</option>
+                        <option value="Thẩm mỹ mắt">Thẩm mỹ mắt</option>
+                        <option value="Thẩm mỹ mũi">Thẩm mỹ mũi</option>
+                        <option value="Thẩm mỹ cằm">Thẩm mỹ cằm</option>
+                        <option value="Thẩm mỹ cấy mỡ">Thẩm mỹ cấy mỡ</option>
+                        <option value="Thẩm mỹ vòng 1">Thẩm mỹ vòng 1</option>
+                        <option value="Thẩm mỹ vòng 2">Thẩm mỹ vòng 2</option>
+                        <option value="Thẩm mỹ vòng 3">Thẩm mỹ vòng 3</option>
+                        <option value="Phun thêu mày">Phun thêu mày</option>
+                        <option value="Phun thêu môi">Phun thêu môi</option>
+                        <option value="Phun thêu khác">Phun thêu khác</option>
+                        <option value="Điều trị da">Điều trị da</option>
+                        <option value="Thẩm mỹ khác">Thẩm mỹ khác</option>
+                        <option value="Tin tức">Tin tức</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="buntton-content">
+        <input id="btnSave" class="btn btn-primary" value="Thêm đường dẫn mới" />
+    </div>
+</div>
