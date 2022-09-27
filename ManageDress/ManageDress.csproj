@@ -1355,7 +1355,6 @@
     <Content Include="Images\ANH-T-S-NGUC-MENTOR.jpg" />
     <Content Include="Images\ANH-T-S-THAI-DUONG.jpg" />
     <Content Include="Images\ANH-T-S-THU-NHO-CO-BE.jpg" />
-    <Content Include="Images\background_footer.jpg" />
     <Content Include="Images\bg-bn.jpg" />
     <Content Include="Images\close-popup.png" />
     <Content Include="Images\dv_catmi.png" />
@@ -1513,10 +1512,7 @@
     <Content Include="Images\top_banner_2.jpg" />
     <Content Include="Images\tuvan_background.png" />
     <Content Include="Images\tuvan_mau.png" />
-    <Content Include="Images\Video\CSVC Mobile.mp4" />
-    <Content Include="Images\Video\video_banner.mp4" />
     <Content Include="Images\youtube-background.jpg" />
-    <Content Include="Images\youtube_1400.jpg" />
     <Content Include="Images\youtube_1600.jpg" />
     <Content Include="Images\youtube_icon.png" />
     <Content Include="Images\youtube_model.png" />
@@ -1754,6 +1750,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\Video\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
