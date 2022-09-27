@@ -13,14 +13,15 @@
             height: 400,
             menubar: false,
             plugins: [
-                'advlist autolink lists link image charmap print preview anchor',
-                'searchreplace visualblocks code fullscreen',
-                'insertdatetime media table paste code help wordcount'
+                'advlist', 'autolink', 'link', 'lists', 'charmap', 'preview',
+                'anchor', 'pagebreak',
+                'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code',
+                'fullscreen', 'insertdatetime',
+                'media', 'table', 'emoticons', 'template',
             ],
-            toolbar: 'undo redo | formatselect | ' +
-                'bold italic backcolor | alignleft aligncenter ' +
-                'alignright alignjustify | bullist numlist outdent indent | ' +
-                'removeformat | help',
+            toolbar: 'undo redo | styles | bold italic underline | alignleft aligncenter alignright alignjustify | ' +
+                'bullist numlist outdent indent | link | preview media fullscreen | ' +
+                'forecolor backcolor emoticons',
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         });
         $("#image1").on('change', function () {
@@ -422,6 +423,7 @@
 
         $("#btnSave").click(function () {
             var model = {
+                'Id': $("#txtId").val(),
                 'Code': $("#txtCode").val(),
                 'Title': $("#txtName").val(),
                 'Content1': tinymce.get("Content1").getContent(),
@@ -479,8 +481,8 @@
                     data: JSON.stringify(model),
                     success: function (data) {
                         if (data.Response == "Success") {
-                            alert("Cập nhật thành công.");
-                            location.reload();
+                            alert("Cập nhật tin tức thành công.");
+                            location.href = '/Account/ManageNews';
                         }
                     },
                     failure: function (errMsg) {
@@ -496,10 +498,11 @@
     <div class="card">
         <div class="card-header bg-primary text-white">Thay đổi trang tin tức</div>
         <div class="card-body">
+            <input type="hidden" id="txtId" value="@Model.Id" placeholder="Nhập mã dịch vụ">
             <div class="col col-md-6">
                 <div class="form-group">
                     <label for="email">Mã tin tức:</label>
-                    <input type="text" class="form-control" id="txtCode" disabled value="@Model.Code" placeholder="Nhập mã dịch vụ">
+                    <input type="text" class="form-control" id="txtCode" value="@Model.Code" placeholder="Nhập mã dịch vụ">
                 </div>
                 <div class="form-group">
                     <label for="pwd">Tiêu đề tin tức:</label>

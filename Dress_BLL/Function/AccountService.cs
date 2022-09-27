@@ -527,10 +527,11 @@ namespace Dress_BLL.Function
             {
                 try
                 {
-                    var serviceEntity = context.NewsArticles.FirstOrDefault(m => m.Code == model.Code);
+                    var serviceEntity = context.NewsArticles.FirstOrDefault(m => m.Id == model.Id);
 
                     if (serviceEntity != null)
                     {
+                        serviceEntity.Code = model.Code;
                         serviceEntity.Title = model.Title;
                         serviceEntity.Content1 = model.Content1;
                         serviceEntity.Content2 = model.Content2;
@@ -626,10 +627,11 @@ namespace Dress_BLL.Function
             {
                 try
                 {
-                    var serviceEntity = context.ServiceDetails.FirstOrDefault(m => m.Code == service.Code);
+                    var serviceEntity = context.ServiceDetails.FirstOrDefault(m => m.Id == service.Id);
 
                     if (serviceEntity != null)
                     {
+                        serviceEntity.Code = service.Code;
                         serviceEntity.Content1 = service.Content1;
                         serviceEntity.Content2 = service.Content2;
                         serviceEntity.Title = service.Title;

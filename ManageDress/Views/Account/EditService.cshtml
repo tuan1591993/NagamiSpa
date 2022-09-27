@@ -14,14 +14,15 @@
             height: 400,
             menubar: false,
             plugins: [
-                'advlist autolink lists link image charmap print preview anchor',
-                'searchreplace visualblocks code fullscreen',
-                'insertdatetime media table paste code help wordcount'
+                'advlist', 'autolink', 'link', 'lists', 'charmap', 'preview',
+                'anchor', 'pagebreak',
+                'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code',
+                'fullscreen', 'insertdatetime',
+                'media', 'table', 'emoticons', 'template',
             ],
-            toolbar: 'undo redo | formatselect | ' +
-                'bold italic backcolor | alignleft aligncenter ' +
-                'alignright alignjustify | bullist numlist outdent indent | ' +
-                'removeformat | help',
+            toolbar: 'undo redo | styles | bold italic underline | alignleft aligncenter alignright alignjustify | ' +
+                'bullist numlist outdent indent | link | preview media fullscreen | ' +
+                'forecolor backcolor emoticons',
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         });
 
@@ -921,6 +922,7 @@
 
         $("#btnSave").click(function () {
             var model = {
+                'Id': $("#txtId").val(),
                 'Code': $("#txtCode").val(),
                 'Title': $("#txtName").val(),
                 'Title1': $("#txttitle1").val(),
@@ -985,8 +987,8 @@
                     data: JSON.stringify(model),
                     success: function (data) {
                         if (data.Response == "Success") {
-                            alert("Cập nhật thành công.");
-                            location.reload();
+                            alert("Cập nhật dịch vụ thành công.");
+                            location.href = '/Account/ManageService';
                         }
                     },
                     failure: function (errMsg) {
@@ -1001,10 +1003,11 @@
     <div class="card">
         <div class="card-header bg-primary text-white">Thay đổi trang dịch vụ</div>
         <div class="card-body">
+            <input type="hidden" id="txtId" value="@Model.ServiceDetails.Id" />
             <div class="col col-md-6">
                 <div class="form-group">
                     <label for="email">Mã dịch vụ:</label>
-                    <input type="text" class="form-control" id="txtCode" disabled value="@Model.ServiceDetails.Code" placeholder="Nhập mã dịch vụ">
+                    <input type="text" class="form-control" id="txtCode" value="@Model.ServiceDetails.Code" placeholder="Nhập mã dịch vụ">
                 </div>
                 <div class="form-group">
                     <label for="pwd">Tên dịch vụ:</label>

@@ -9,7 +9,7 @@ namespace Dress_BLL.Model
 {
     public class ServiceDetailUpdateModel
     {
-        public int Id { get; set; }
+        public int Id { get; set; } = 0;
         public string Code { get; set; }
         public string Title { get; set; }
         public string Title1 { get; set; }
